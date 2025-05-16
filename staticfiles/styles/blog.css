@@ -1,14 +1,15 @@
 /* Importación de fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Biryani&family=Playfair+Display:wght@700&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap');
 
 /* Variables de color */
 :root {
-  --color-fondo: #FAF9F6;
-  --color-texto: #2E2E2E;
-  --color-primario: #2F855A;
-  --color-secundario: #FF7043;
-  --color-claro: #FFFFFF;
-  --color-neutro: #E0E0E0;
+  --color-fondo: #f6f4f0;
+  --color-texto: #2e2e2e;
+  --color-primario: #6b8e23; /* verde oliva */
+  --color-secundario: #4682b4; /* azul acero */
+  --color-acento: #d2691e; /* tierra */
+  --color-claro: #ffffff;
+  --color-neutro: #e0e0e0;
   --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -20,7 +21,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   background-color: var(--color-fondo);
   color: var(--color-texto);
   line-height: 1.6;
@@ -47,17 +48,17 @@ body {
 }
 
 .navbar_a:hover {
-  color: var(--color-secundario);
+  color: var(--color-acento);
 }
 
 /* Contenedor principal */
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--color-claro);
   border: 1px solid var(--color-neutro);
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: var(--sombra-suave);
 }
 
@@ -70,21 +71,21 @@ body {
 }
 
 .container h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-align: center;
 }
 
 .container h2 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 .container h3 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-align: left;
 }
 
 .container p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   text-align: justify;
   margin-bottom: 1rem;
 }
@@ -102,8 +103,8 @@ select {
   margin-bottom: 1rem;
   border: 1px solid var(--color-neutro);
   border-radius: 8px;
-  background-color: #F0F5EC;
-  font-family: 'Inter', sans-serif;
+  background-color: #eef4ea;
+  font-family: 'Quicksand', sans-serif;
 }
 
 /* Botones */
@@ -125,7 +126,7 @@ a.button {
 button:hover,
 input[type="submit"]:hover,
 a.button:hover {
-  background-color: #276749;
+  background-color: #556b2f;
   transform: translateY(-2px);
 }
 
@@ -135,7 +136,7 @@ a.button:hover {
   border: 1px solid var(--color-neutro);
   border-radius: 16px;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   box-shadow: var(--sombra-suave);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   animation: fadeSlideIn 0.6s ease forwards;
@@ -146,31 +147,28 @@ a.button:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-.tarjeta h3 {
+.tarjeta h2, .tarjeta h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--color-primario);
+  font-size: 1.5rem;
+  color: var(--color-acento);
   margin-bottom: 0.8rem;
 }
 
 /* Tags */
 .tag {
   display: inline-block;
-  background-color: var(--color-primario);
+  background-color: var(--color-secundario);
   color: var(--color-claro);
-  padding: 0.3rem 0.8rem;
-  margin: 2px;
+  padding: 0.4rem 0.9rem;
+  margin: 3px;
   border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 600;
   transition: transform 0.2s ease-in-out;
 }
 
 .tag:hover {
-  background-color: #276749;
+  background-color: #336699;
   transform: scale(1.05);
 }
 
@@ -205,16 +203,17 @@ a.button:hover {
 
 .imagen_portada {
   width: 100%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
-  margin: 0 auto;
+  border-radius: 12px;
+  margin-bottom: 1rem;
 }
 
 .imagen_portada img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 30%;
+  object-position: center;
 }
 
 .acceder_container {
@@ -224,7 +223,7 @@ a.button:hover {
 }
 
 .boton_acceso {
-  background-color: var(--color-secundario);
+  background-color: var(--color-acento);
   color: white;
   padding: 14px 28px;
   font-size: 1.1rem;
@@ -237,7 +236,7 @@ a.button:hover {
 }
 
 .boton_acceso:hover {
-  background-color: #E64A19;
+  background-color: #b35017;
   transform: translateY(-2px);
 }
 
@@ -251,3 +250,29 @@ a.button:hover {
     transform: translateY(0);
   }
 }
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fondo: #1e1e1e;
+    --color-texto: #f4f4f4;
+    --color-claro: #2c2c2c;
+    --color-neutro: #444;
+  }
+
+  .container,
+  .tarjeta,
+  .navbar {
+    background-color: var(--color-claro);
+    color: var(--color-texto);
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: #333;
+    color: var(--color-texto);
+    border: 1px solid var(--color-neutro);
+  }
+}
+
