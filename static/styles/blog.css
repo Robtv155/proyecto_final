@@ -251,14 +251,14 @@ a.button:hover {
   }
 }
 
-/* Modo oscuro */
+/* Modo oscuro 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fondo: #1e1e1e;
     --color-texto: #f4f4f4;
     --color-claro: #2c2c2c;
     --color-neutro: #444;
-  }
+  }*/
 
   .container,
   .tarjeta,
