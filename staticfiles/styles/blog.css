@@ -251,7 +251,7 @@ a.button:hover {
   }
 }
 
-/* Modo oscuro */
+/* Modo oscuro 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fondo: #1e1e1e;
@@ -275,4 +275,4 @@ a.button:hover {
     border: 1px solid var(--color-neutro);
   }
 }
-
+*/
