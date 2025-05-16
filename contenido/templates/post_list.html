@@ -1,0 +1,53 @@
+{% extends 'blog.html' %}
+{% load static %}
+{% block title %}Lista de Posts{% endblock %}
+
+{% block content %}
+<h1 class="titulo">Lista de posts</h1>
+<a href="{% url 'post_create' %}">Crea un nuevo post</a>
+<br><br>
+<a href="{% url 'tag_list' %}">Lista de tags</a>
+<br>
+
+<div class="grid">
+  <!-- {% for post in page_obj %}
+  <div class="tarjeta">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content |truncatechars:20 }}</p>
+    <a href="{% url 'post_detail' post.pk %}">Lee el post</a>
+    <br>
+    {% for i in post.tags.all %}
+      <a href="{% url 'post_list_by_tag' i.pk %}"><p class="tag">{{ i.name }}</p></a>
+    {% endfor %}
+  </div>
+  {% endfor %} -->
+</div>
+
+<!-- Controles de paginación
+<div class="paginacion">
+  {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; Primero</a>
+    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+  {% endif %}
+  <br>
+  <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+  <br>
+
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+  {% endif %}
+</div> -->
+
+<!-- Controles de paginación generados por JS -->
+<div class="paginacion">
+  <button id="prev-btn" disabled>Anterior</button>
+  <span id="page-info">Página 1</span>
+  <button id="next-btn">Siguiente</button>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/post_list.js' %}"></script>
+{% endblock %}
+

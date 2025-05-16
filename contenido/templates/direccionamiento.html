@@ -1,0 +1,63 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Direccionamiento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+  </head>
+
+  <body>
+    <div class="fondo">
+      <div class="título">
+        <h1 style="text-align: center">Direccionamiento</h1>
+      </div>
+      <p class="texto">Existen 3 tipos de direccionamiento:</p>
+      <p class="texto">
+        La etiqueta HTML <b>&lt;img&gt;</b> se usa para incrustar una imagen en
+        una página web.
+      </p>
+      <div class="direccionamiento">
+        <h2>
+          <a href="{% url 'imagenes' %}">Imagen</a>
+        </h2>
+      </div>
+      <div class="fotos">
+        <!-- <img src="../static/img/png.jpg" alt="Imagen PNG" /> -->
+        <img src="{% static 'img/png.jpg' %}" alt="Imagen PNG" />
+      </div>
+      <br />
+      <hr />
+      <p class="texto">Podemos descargar un archivo .PDF.</p>
+      <div class="direccionamiento">
+        <h2>
+          <a href="{% static 'pdf/Ejemplo-pdf.pdf' %}">PDF</a>
+        </h2>
+      </div>
+      <div class="fotos">
+        <img src="{% static 'img/pdf.png' %}" alt="Imagen PDF" />
+      </div>
+      <hr />
+      <p class="texto">Podemos descargar un archivo .Zip.</p>
+      <div class="direccionamiento">
+        <h2>
+          <a href="{% static 'zip/UNIDAD.zip' %}">Zip</a>
+        </h2>
+      </div>
+      <div class="fotos">
+        <img src="{% static 'img/zip.png' %}" alt="Imagen Zip" />
+      </div>
+      <hr />
+    </div>
+    <div class="volver">
+      <a href="javascript:history.back()">Volver</a>
+    </div>
+  </body>
+</html>

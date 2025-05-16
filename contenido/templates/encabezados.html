@@ -1,0 +1,68 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Encabezados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css" /> -->
+  </head>
+
+  <body>
+    <div style="background-color: antiquewhite">
+      <div class="título">
+        <h1 style="text-align: center">Encabezados</h1>
+      </div>
+      <p class="texto">
+        Existen diferentes encabezados que sirven para organizar partes de la
+        página y presentar su contenido. <br />
+        Cada uno tiene un tamaño del texto y nombre propio.
+      </p>
+      <p class="texto">
+        Se utiliza la etiqueta <b>&lt;h&gt;</b> numerada de 1 a 6 según la
+        importancia del texto.
+      </p>
+      <br />
+      <hr />
+      <p class="texto">El <b>&lt;h1&gt;</b> se llama Título Principal</p>
+      <h1 style="text-align: center">Título Principal</h1>
+      <hr />
+      <p class="texto">
+        El <b>&lt;h2&gt;</b> se llama Subtítulo. En este caso hemos cambiado el
+        color de su fondo y alterado su tamaño a rojo.
+      </p>
+      <h2 style="text-align: justify; background-color: red; width: 250px">
+        Subtítulo
+      </h2>
+      <hr />
+      <p class="texto">El <b>&lt;h3&gt;</b> se llama Sección Importante</p>
+      <h3 style="text-align: left">Sección Importante</h3>
+      <hr />
+      <p class="texto">
+        El <b>&lt;h4&gt;</b> se llama Subsección. En este caso hemos alineado el
+        texto a la derecha de la pantalla.
+      </p>
+      <h4 style="text-align: right">Subsección</h4>
+      <hr />
+      <p class="texto">El <b>&lt;h5&gt;</b> se llama Detalle</p>
+      <h5 style="text-align: justify">Detalle</h5>
+      <hr />
+      <p class="texto">
+        El <b>&lt;h6&gt;</b> se llama Nota Pequeña. En este caso hemos cambiado
+        el color de su fuente y alineado a la derecha.
+      </p>
+      <h6 style="text-align: right; color: Tomato">Nota Pequeña</h6>
+      <hr />
+      <p>Esto es un párrafo</p>
+    </div>
+    <div class="volver">
+      <a href="javascript:history.back()">Volver</a>
+    </div>
+  </body>
+</html>

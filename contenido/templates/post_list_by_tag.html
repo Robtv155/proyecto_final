@@ -1,0 +1,25 @@
+{% extends 'blog.html' %}
+{% block title %}Post List by Tag{% endblock %}
+
+
+{% block content %}
+<h1 class="titulo">Lista de posts por Tag: {{ tag.name }}</h1>
+<a href="{% url 'post_create' %}">Crea un nuevo post</a>
+<br>
+<a href="{% url 'tag_list' %}">Lista de tags</a>
+<br>
+
+<div class="grid">
+  {% for post in object.posts.all %}
+  <div class="tarjeta">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content |truncatechars:10 }}</p>
+    <a href="{% url 'post_detail' post.pk %}">Lee el post</a>
+    {% for i in post.tags.all %}
+      <a href="{% url 'post_list_by_tag' i.pk %}"><p class="tag">{{ i.name }}</p></a>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+

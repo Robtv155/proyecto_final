@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block content %}
+  <div class="error-page" style="text-align:center; padding: 4rem 2rem;">
+    <h1 style="font-size: 4rem; color: #cc0000;">404</h1>
+    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Página no encontrada</h2>
+    <p style="font-size: 1.2rem;">La página que buscas no existe o ha sido movida.</p>
+    <a href="{% url 'blog' %}" style="display:inline-block; margin-top:2rem; padding:0.75rem 1.5rem; background-color:#007BFF; color:white; text-decoration:none; border-radius:5px;">Volver al inicio</a>
+  </div>
+{% endblock %}

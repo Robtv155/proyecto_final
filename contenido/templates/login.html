@@ -1,0 +1,45 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="fondo">
+      <div class="título">
+        <h1>Inicia sesión</h1>
+      </div>
+
+      {% for mensaje in messages %}
+      <p style="color: green; display: block; width: 100%; text-align: center">{{ mensaje }}</p>
+      {% endfor %}
+
+      <!-- Contenedor con estilo -->
+      <div id="formulario">
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="botonVerde">Acceder</button>
+          <label><input type="checkbox" name="remember_me">Recuérdame</label>
+        </form>
+      </div>
+
+      <p style="display: block; width: 100%; text-align: center">
+        ¿Aún no tienes cuenta?
+        <a href="{% url 'registro' %}">¡Regístrate!</a>
+      </p>
+      <p>
+        <a style="display: block; width: 100%; text-align: center" href="{% url 'index' %}">
+          Vuelve al inicio</a
+        ></p>
+    </div>
+    
+  </body>
+</html>

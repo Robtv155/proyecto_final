@@ -1,0 +1,36 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Javascript1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+    <link href='https://fonts.googleapis.com/css?family=Biryani' rel='stylesheet'>
+</head>
+<body>
+    <nav>
+
+    </nav>
+    <h2>
+        <a href="{% url 'compra' %}">Tu Compra</a>
+    </h2>
+    <div class="fondo">
+        <div class="título">
+            <h1 style="text-align: center;">Javascript1</h1>
+        </div>
+    <div style="text-align: center;">
+    <iframe src="{% static 'pdf/tutorial JS1.pdf' %}" width="800px" height="900px"></iframe>
+</div>
+<div class="volver">
+    <a href="javascript:history.back()">Volver</a>
+</div>
+</body>
+</html>

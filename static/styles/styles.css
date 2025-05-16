@@ -1,0 +1,384 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url("../img/supermercado.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Contenedor general */
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Carrito */
+.carrito {
+  position: absolute;
+  top: 0px;
+  left: 95px;
+  width: 50px;
+  height: auto;
+}
+
+/* Contenedor principal */
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Entrada de productos */
+.añadir_producto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prod {
+  flex: 3;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.numb {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  max-width: 100px;
+}
+
+.añadir_producto button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.añadir_producto button:hover {
+  background: #218838;
+}
+
+/* Lista de productos */
+#lista_productos {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+#lista_productos li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lista_productos li .producto-info {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+#lista_productos li .producto-info span {
+  margin-right: 10px;
+}
+
+#lista_productos li .precio-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+#lista_productos li button {
+  background: #3599e5;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+#lista_productos li button:hover {
+  background: #2303b0;
+}
+
+#lista_ticket li button {
+  background: #e53535;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-size: 12px;
+  height: auto;
+  min-width: 70px;
+  text-align: center;
+}
+
+#lista_ticket li button:hover {
+  background: #f00505d9;
+}
+
+.numb2 {
+  width: 110px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* Ticket */
+.ticket {
+  background: rgba(229, 234, 239, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#lista_ticket {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#lista_ticket li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lista_ticket li .ticket_info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+h4 {
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: right;
+  color: #333;
+}
+
+/* Cinta */
+.cinta {
+  background-color: darkolivegreen;
+  font-family: "Great Vibes", cursive;
+  text-align: center;
+  color: antiquewhite;
+  margin-top: 90px;
+  height: 900px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Botón modo */
+.modo_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  border-radius: 25%;
+}
+
+/* Selector idioma */
+.lenguaje {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 90px;
+  height: 30px;
+  background-color: #abe0e8;
+  border-radius: 15%;
+}
+
+/* Modo oscuro */
+.modo_oscuro {
+  background: url("../img/supermercado_dark.jpg") no-repeat center center/cover;
+  color: white;
+}
+
+.modo_oscuro .modo_btn {
+  background-color: rgb(8, 172, 242);
+}
+
+.modo_oscuro .container {
+  background: rgba(21, 2, 57, 0.9);
+  box-shadow: 0 4px 10px rgba(246, 237, 237, 0.8);
+}
+
+.modo_oscuro h1 {
+  color: #cec6c6;
+}
+
+.modo_oscuro .añadir_producto button {
+  background: #28a745;
+  color: rgba(21, 2, 57);
+  border: rgba(229, 234, 239);
+}
+
+.modo_oscuro .añadir_producto input {
+  background-color: #030a05;
+  color: rgb(255, 249, 250);
+  border: 1px solid rgba(229, 234, 239);
+}
+
+.modo_oscuro #lista_productos li {
+  border: 1px solid #ddd;
+  background: #000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modo_oscuro #lista_productos li button {
+  color: black;
+}
+
+.modo_oscuro #lista_productos li input {
+  border: 1px solid #ddd;
+  background: #000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: rgb(255, 249, 250);
+}
+
+.modo_oscuro .cinta {
+  color: black;
+}
+
+.modo_oscuro .ticket {
+  background: rgb(30, 0, 0);
+  box-shadow: 0 4px 10px rgba(247, 245, 245, 0.2);
+  color: #d08f8f;
+}
+
+.modo_oscuro #lista_ticket li button {
+  color: black;
+}
+
+.modo_oscuro #lista_ticket {
+  background-color: #333;
+  color: #ccc;
+}
+
+.modo_oscuro #lista_ticket li {
+  background: #080808;
+  box-shadow: 2px 2px 5px rgba(250, 248, 248, 0.1);
+}
+
+.modo_oscuro .ticket h2,
+.modo_oscuro .ticket h4 {
+  color: rgb(227, 198, 198);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .carrito {
+    left: 10px;
+    top: 10px;
+    width: 40px;
+  }
+
+  .container,
+  .ticket {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .añadir_producto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prod,
+  .numb,
+  .añadir_producto button {
+    width: 100%;
+  }
+
+  #lista_productos li,
+  #lista_ticket li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cinta {
+    writing-mode: horizontal-tb;
+    height: auto;
+    width: 100%;
+    font-size: 20px;
+    margin: 20px 0;
+  }
+
+  .modo_btn,
+  .lenguaje {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+  }
+}

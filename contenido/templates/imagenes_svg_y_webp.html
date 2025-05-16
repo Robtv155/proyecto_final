@@ -1,0 +1,65 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Imagenes webp</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='https://fonts.googleapis.com/css?family=Biryani' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+</head>
+
+<body>
+    <div class="fondo">
+        <div class="título">
+            <h1 style="text-align: center;">Imágenes SVG y WEBP</h1>
+        </div>
+        <p class="texto">
+            Las imágenes WEBP y SVG son dos formatos populares, pero tienen diferencias clave: <br><br>
+
+            WEBP</p>
+        <ul class="img">
+            <li>✅ Formato de imagen rasterizada (mapa de bits)</li>
+            <li>✅ Alta compresión con buena calidad (mejor que JPEG y PNG)</li>
+            <li>✅ Soporta transparencia y animaciones</li>
+            <li>✅ Ideal para sitios web (reduce tiempos de carga)</li>
+            <li>❌ No es vectorial, por lo que pierde calidad al escalarse</li>
+        </ul>
+
+        <p class="texto">SVG</p>
+        <ul class="img">
+            <li>✅ Formato de imagen vectorial</li>
+            <li>✅ Se puede escalar sin perder calidad</li>
+            <li>✅ Editable con código XML (se pueden modificar colores, formas, etc.)</li>
+            <li>✅ Ideal para iconos, logos e ilustraciones en sitios web</li>
+            <li>❌ No es adecuado para fotografías o imágenes complejas</li>
+        </ul><br>
+        <div class="justify-content_space_evenly">
+            <div class="objeto"><img src="{% static 'img/imagen_svg.svg' %}" alt="Imagen svg" width="300px" height="300px"></div>
+            <div class="objeto"><img src="{% static 'img/imagen_webp.webp' %}" alt="Imagen webp" width="300px" height="300px"></div>
+        </div><br>
+        <p class="texto" style="text-align: center; font-style: italic">La imagen de la izquierda es un ejemplo de SVG, la de la derecha de WEBP</p>
+        <p class="texto">
+            En resumen: <br>
+
+            Usa WEBP para fotos optimizadas en la web <br>
+            Usa SVG para gráficos escalables como logotipos o ilustraciones <br>
+
+            Si quieres animaciones o cambios de color dinámicos, usa SVG embebido. <br>
+            Si solo necesitas mostrar la imagen, usa <b>&lt;img&gt;</b> o CSS.</p>
+
+        </p>
+    </div>
+    <div class="volver">
+        <a href="javascript:history.back()">Volver</a>
+    </div>
+</body>
+
+</html>

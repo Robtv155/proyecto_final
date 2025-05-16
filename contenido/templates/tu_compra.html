@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de la Compra</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1 class="cinta" id="titulo">TU COMPRA</h1>
+    </header>
+
+    <!-- Carrito en SVG -->
+    <div class="carrito">
+      <svg
+        width="200"
+        height="200"
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="black"
+      >
+        <rect x="20" y="40" width="120" height="80" stroke="black" stroke-width="5" fill="none" />
+        <line x1="20" y1="40" x2="10" y2="20" stroke="black" stroke-width="5" />
+        <line x1="40" y1="40" x2="40" y2="120" stroke="black" stroke-width="2" />
+        <line x1="60" y1="40" x2="60" y2="120" stroke="black" stroke-width="2" />
+        <line x1="80" y1="40" x2="80" y2="120" stroke="black" stroke-width="2" />
+        <line x1="100" y1="40" x2="100" y2="120" stroke="black" stroke-width="2" />
+        <line x1="120" y1="40" x2="120" y2="120" stroke="black" stroke-width="2" />
+        <line x1="20" y1="60" x2="140" y2="60" stroke="black" stroke-width="2" />
+        <line x1="20" y1="80" x2="140" y2="80" stroke="black" stroke-width="2" />
+        <line x1="20" y1="100" x2="140" y2="100" stroke="black" stroke-width="2" />
+        <circle cx="40" cy="130" r="10" fill="black" />
+        <circle cx="120" cy="130" r="10" fill="black" />
+      </svg>
+    </div>
+
+    <!-- Botón de modo oscuro y selector de idioma -->
+    <button class="modo_btn" id="modo_btn">🌙</button>
+    <select class="lenguaje" id="language">
+      <option value="es">Castellano</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="kl">Klingon</option>
+    </select>
+
+    <!-- Contenido principal agrupado -->
+    <div class="main-wrapper">
+      <!-- Lista de la compra -->
+      <div class="container">
+        <h1 id="contenedor">Lista de la Compra</h1>
+        <div class="añadir_producto">
+          <input class="prod" type="text" id="producto" placeholder="Añadir nuevo producto" />
+          <input class="numb" type="number" id="cantidad" placeholder="Cantidad" />
+          <button id="agregar" onclick="agrega_producto()">Agregar</button>
+        </div>
+        <ul id="lista_productos"></ul>
+      </div>
+
+      <!-- Ticket de compra -->
+      <div class="ticket">
+        <h2 id="ticket">Ticket de Compra</h2>
+        <ul id="lista_ticket"></ul>
+        <hr />
+        <h4 id="totalt">TOTAL: <span id="total">0</span> €</h4>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

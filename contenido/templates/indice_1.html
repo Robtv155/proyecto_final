@@ -1,0 +1,89 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Indice Tutorial</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href='https://fonts.googleapis.com/css?family=Biryani' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+</head>
+
+<body>
+    <div class="fondo">
+        <ul>
+            <div class="título">
+                <h1>
+                    Tutorial Páginas Curso / Pg 1
+                </h1>
+                <nav>
+                    <ul class="páginas">
+                        <li class="páginas"><a href="{% url 'indice_1' %}">Página 1 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_2' %}">Página 2 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_3' %}">Página 3 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_4' %}">Página 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="texto">El elemento header representa un contenedor para contenido introductorio o un conjunto de
+                enlaces de navegación. Un elemento header generalmente contiene: uno o más elementos de encabezado
+                (<b>&lt;h1&gt;</b> - <b>&lt;h6&gt;</b>) logotipo o ícono información sobre la autoría. Nota: Puedes
+                tener varios elementos header en un documento HTML. Sin embargo, un header no puede colocarse dentro de
+                un footer, address u otro elemento header.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'encabezados' %}">Encabezados</a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto">El atributo href especifica la URL de la página a la que dirige el enlace. Si el atributo
+                href no está presente, la etiqueta <b>&lt;a&gt;</b> no será un hipervínculo. Consejo: Puedes usar
+                href="#top" o href="#" para enlazar a la parte superior de la página actual.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'direccionamiento' %}">Direccionamiento</a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto">Visual Studio Code te permite realizar la mayoría de las tareas directamente desde el
+                teclado. Esta página enumera los atajos predeterminados (atajos de teclado) y describe cómo puedes
+                actualizarlos.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'atajos_teclado' %}">Atajos de Teclado</a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto">Las tablas son una buena forma de mostrar información de manera visual.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'tablas' %}">Tablas</a>
+                    </h2>
+                    <hr><br>
+        </ul>
+    </div>
+    <div class="volver">
+        <a href="javascript:history.back()">Volver</a>
+    </div>
+    <footer>
+        <div class="footer">Página Web creada por Roberto Navarro Ruano. Todos los derechos reservados. 2025.</div>
+    </footer>
+
+</body>
+
+</html>

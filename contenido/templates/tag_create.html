@@ -1,0 +1,11 @@
+{% extends 'blog.html' %}
+{% block title %} Crea un nuevo Tag {% endblock %}
+
+{% block content %}
+ <h2>Crear un nuevo Tag</h2>
+ <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crea Tag</button>
+ </form>
+ {% endblock %}

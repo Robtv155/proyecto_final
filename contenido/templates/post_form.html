@@ -1,0 +1,13 @@
+{% extends 'blog.html' %}
+{% block title %} Editar un Post {% endblock %}
+
+{% block content %}
+ <h2>Edita un Post</h2>
+ <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Edita</button>
+ </form>
+ <br>
+ <a href="{% url 'post_detail' object.pk %}">Cancelar</a>
+ {% endblock %}

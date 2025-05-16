@@ -1,0 +1,104 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Formulario de entrada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Biryani"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="stylesheet" href="static/tutorial.css" /> -->
+  </head>
+
+  <body>
+    <div class="fondo">
+      <div class="título">
+        <h1>TUTORIAL</h1>
+      </div>
+      <h1>Roberto Navarro Ruano</h1>
+      <!-- <div id="formulario">
+        <form
+          action="indice 1.html"
+          target="_parent"
+          method="post"
+          autocomplete="off"
+        >
+          <label for="Usuario">Usuario......</label>
+          <input
+            type="text"
+            id="Usuario"
+            name="nombre de usuario"
+            placeholder="Introduce Usuario"
+            autofocus
+            size="40"
+            required
+            minlength="4"
+          />
+          <br /><br />
+          <label for="Contraseña">Contraseña......</label>
+          <input
+            type="password"
+            id="Contraseña"
+            name="contraseña de usuario"
+            placeholder="Introduce Contraseña"
+            required
+            autocomplete="off"
+            maxlength="8"
+            minlength="8"
+            pattern="[A-Z0-9]{6,2}"
+            tittle="Debe contener 6 letras y 2 números"
+          />
+          <br /><br /> -->
+      <h1>Bienvenido</h1>
+
+      {% if user.is_authenticated %}
+      <p style="display: block; width: 100%; text-align: center">
+        Hola, {{ user.username }}
+      </p>
+      <div style="text-align: center">
+        <a href="{% url 'menujavahtmlcss' %}" class="botonVerde botonCentrado"
+          >Entrar</a
+        >
+      </div>
+      <br /><br />
+      <a
+        style="display: block; width: 100%; text-align: center"
+        href="{% url 'logout' %}"
+        >Cierra sesión</a
+      >
+
+      {% else %}
+      <a
+        style="display: block; width: 100%; text-align: center"
+        href="{% url 'login' %}"
+        >Inicia sesión</a
+      >
+      {% endif %}
+
+      <hr />
+
+      {% for mensaje in messages %}
+      <p style="color: green; display: block; width: 100%; text-align: center">
+        {{mensaje}}
+      </p>
+      {% endfor %}
+
+      <!-- <input type="submit" class="botonVerde"> -->
+      <!-- <a href="{% url 'menujavahtmlcss' %}" class="botonVerde">Entrar</a
+          ><br /><br />
+          <button type="reset" class="botonVerde">Resetea</button> -->
+      <!-- </form>
+      </div> -->
+    </div>
+  </body>
+</html>

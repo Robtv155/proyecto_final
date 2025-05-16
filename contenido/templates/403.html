@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+
+{% block title %}Error 403{% endblock %}
+
+{% block content %}
+  <div class="error-page" style="text-align:center; padding: 4rem 2rem;">
+    <h1 style="font-size: 4rem; color: #cc0000;">403</h1>
+    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Acceso denegado</h2>
+    <p style="font-size: 1.2rem;">No tienes permiso para acceder a esta página.</p>
+    <a href="{% url 'blog' %}" style="display:inline-block; margin-top:2rem; padding:0.75rem 1.5rem; background-color:#007BFF; color:white; text-decoration:none; border-radius:5px;">Volver al inicio</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'blog.html' %}
+{% block title %} Detalles del Post {% endblock %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>{{ object.content }}</p>
+<p>Creado por: {{ object.author }}</p>
+<p>Fecha: {{ object.created_at }}</p>
+
+{% for tag in object.tags.all %}
+<ul>
+<li>
+  <p class="tag">{{ tag.name }}</p>
+</li>
+</ul>
+{% endfor %}
+
+{% if user.is_superuser or user == object.author %}
+<a href="{% url 'post_update' object.pk %}">Editar</a>
+<a href="{% url 'post_delete' object.pk %}">Eliminar</a>
+{% endif %}
+
+<a href="{% url 'tag_list'  %}">Lista de tags</a>
+
+<h2>Comentarios</h2>
+<a href="{% url 'comment_create' object.pk %}">Deja tu comentario</a>
+{% for comment in object.comment_set.all %}
+<hr>
+    <div>
+        <p>{{ comment.author.username }}:<br> {{comment.content }} </p>
+    </div>
+{% endfor %}
+{% endblock %}
+

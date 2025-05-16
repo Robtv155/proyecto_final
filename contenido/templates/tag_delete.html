@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+{% block title %} Confirmar Borrado {% endblock %}
+
+{% block content %}
+    <h4>¿Borrar el post?</h4>
+    <p>{{ object.name }}</p>
+        <form method="POST">
+        {% csrf_token %} 
+        <button type="submit">Sí, eliminar tag</button>
+    </form>
+    <a href="{% url 'tag_list' %}">Cancelar</a>
+{% endblock %}

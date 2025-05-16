@@ -1,0 +1,384 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Flexbox</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='https://fonts.googleapis.com/css?family=Biryani' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+    <style>
+        .item {
+            background-color: black;
+            color: antiquewhite;
+            margin: 10px;
+            padding: 30px;
+            font-size: 30px;
+            border-radius: 5%;
+        }
+
+        .flex-container_row {
+            display: flex;
+            background-color: darkgreen;
+            flex-direction: row;
+        }
+
+        .flex-container_row-reverse {
+            display: flex;
+            background-color: darkgreen;
+            flex-direction: row-reverse;
+        }
+
+        .flex-container_column {
+            display: flex;
+            background-color: darkgreen;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .flex-container_column-reverse {
+            display: flex;
+            background-color: darkgreen;
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        .justify-content_flex-start {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: flex-start;
+        }
+
+        .justify-content_flex-end {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: flex-end;
+        }
+
+        .justify-content_center {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: center;
+        }
+
+        .justify-content_space-between {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: space-between;
+        }
+
+        .justify-content_space-around {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: space-around;
+        }
+
+        .justify-content_space-evenly {
+            display: flex;
+            background-color: darkgreen;
+            justify-content: space-evenly;
+        }
+
+        .align-items_flex-start {
+            display: flex;
+            background-color: darkgreen;
+            align-items: flex-start;
+        }
+
+        .align-items_flex-end {
+            display: flex;
+            background-color: darkgreen;
+            align-items: flex-end;
+        }
+
+        .align-items_center {
+            display: flex;
+            background-color: darkgreen;
+            align-items: center;
+        }
+
+        .align-items_stretch {
+            display: flex;
+            background-color: darkgreen;
+            align-items: stretch;
+        }
+
+        .align-items_baseline {
+            display: flex;
+            background-color: darkgreen;
+            align-items: baseline;
+        }
+
+        .flex-wrap_nowrap {
+            display: flex;
+            background-color: darkgreen;
+            flex-wrap: nowrap;
+        }
+
+        .flex-wrap_wrap {
+            display: flex;
+            background-color: darkgreen;
+            flex-wrap: wrap;
+        }
+
+        .flex-wrap_wrap-reverse {
+            display: flex;
+            background-color: darkgreen;
+            flex-wrap: wrap-reverse;
+        }
+
+        .flex-grow {
+            display: flex;
+            background-color: darkgreen;
+        }
+
+        .flex-shrink {
+            display: flex;
+            background-color: darkgreen;
+
+        }
+
+        .flex-basis {
+            display: flex;
+            background-color: darkgreen;
+
+        }
+
+
+
+
+
+
+        /* .{
+            background-color: darkgreen;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="fondo">
+        <div class="título">
+            <h1 style="text-align: center;">Flexbox</h1>
+        </div>
+
+        <p class="texto">Flexbox es un modelo de diseño en CSS que se usa para crear layouts flexibles y adaptables en
+            páginas web. Funciona asignando a un contenedor el estilo <span style="font-style: italic;">display:
+                flex;</span>, lo que permite organizar sus elementos hijos en filas o columnas.</p>
+
+        <p class="texto">Con Flexbox, puedes: <br>
+        <ul class="img">
+            <li>Alinear y distribuir fácilmente los elementos en horizontal o vertical.</li>
+            <li>Ajustar el tamaño de los elementos para que ocupen más o menos espacio según el tamaño de la pantalla.
+            </li>
+            <li>Reorganizar el orden de los elementos sin cambiar el HTML.</li>
+        </ul>
+        </p>
+        <p class="texto">Es ideal para crear layouts responsivos y manejar el espacio entre elementos de forma
+            eficiente.</p>
+        <p class="texto">Diferentes tipos de flexbox:</p>
+        <p class="texto" style="text-indent: 10px;"><b>1. flex-direction</b></p>
+        <p class="texto">Row</p>
+        <div class="flex-container_row">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div><br>
+        <p class="texto">Row-reverse</p>
+        <div class="flex-container_row-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div><br>
+        <p class="texto">Column</p>
+        <div class="flex-container_column">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div><br>
+        <p class="texto">Column-reverse</p>
+        <div class="flex-container_column-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <br>
+        <p class="texto" style="text-indent: 10px;"><b>2. justify-content</b></p>
+        <p class="texto">Flex-start</p>
+        <div class="justify-content_flex-start">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <br>
+        <p class="texto">Flex-end</p>
+        <div class="justify-content_flex-end">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <br>
+        <p class="texto">Center</p>
+        <div class="justify-content_center">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Space-between</p>
+        <div class="justify-content_space-between">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Space-around</p>
+        <div class="justify-content_space-around">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Space-evenly</p>
+        <div class="justify-content_space-evenly">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto" style="text-indent: 10px;"><b>3. align-items</b></p>
+        <p class="texto">Flex-start</p>
+        <div class="align-items_flex-start" style="height: 150px;">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Flex-end</p>
+        <div class="align-items_flex-end" style="height: 150px;">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Center</p>
+        <div class="align-items_center" style="height: 150px;">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Stretch</p>
+        <div class="align-items_stretch" style="height: 150px;">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Baseline</p>
+        <div class="align-items_baseline" style="height: 150px;">
+            <div class="item" style="padding-top: 30px;">1</div>
+            <div class="item">2</div>
+            <div class="item" style="padding-top: 50px;">3</div>
+            <div class="item">4</div>
+            <div class="item" style="padding-top: 70px;">5</div>
+        </div>
+        <p class="texto" style="text-indent: 10px;"><b>4. flex-wrap</b></p>
+        <p class="texto">Nowrap</p>
+        <div class="flex-wrap_nowrap">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+            <div class="item">7</div>
+        </div>
+        <p class="texto">Wrap</p>
+        <div class="flex-wrap_wrap">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+            <div class="item">7</div>
+        </div>
+        <p class="texto">Wrap-reverse</p>
+        <div class="flex-wrap_wrap-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+            <div class="item">7</div>
+        </div>
+        <br>
+        <p class="texto" style="text-indent: 10px;"><b>5. flex-grow, flex-shrink, flex-basis</b></p>
+        <p class="texto">Flex-grow</p>
+        <div class="flex-grow">
+            <div class="item">1</div>
+            <div class="item" style="flex-grow: 2;">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Flex-shrink</p>
+        <div class="flex-shrink">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item" style="flex-shrink: 0">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+        </div>
+        <p class="texto">Flex-basis</p>
+        <div class="flex-basis">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item" style="flex-basis: 200px;">4</div>
+            <div class="item">5</div>
+        </div><br><br>
+        <div class="volver">
+            <a href="javascript:history.back()">Volver</a>
+        </div>
+        <div style="text-align: center;">
+            <iframe src="{% static 'pdf/tutorial_div_flexbox.pdf' %}" frameborder="10" width="900px" height="700px"></iframe>
+
+        </div>
+        <br>
+        <iframe src="{% url 'index' %}" frameborder="0" width="800px" height="350px"></iframe><br>
+        <div style="text-align: center;"><video src="{% static 'img/sample.mp4' %}" loop autoplay preload="metadata" controls width="500px" height="300px" poster></video></div>
+            <div style="text-align: center;"><video src="{% static 'img/sample.mp4' %}" autoplay loop width="500px" height="300px"></video> </div>
+    </div>
+
+</body>
+
+</html>

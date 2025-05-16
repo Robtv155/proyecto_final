@@ -1,0 +1,39 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+  </head>
+  <body>
+    <div class="fondo">
+      <div class="título">
+        <h1>Regístrate</h1>
+      </div>
+
+      {% for mensaje in messages %}
+      <p style="color: green">{{mensaje}}</p>
+      {% endfor %}
+
+      <div id="formulario">
+        <form method="POST">
+          {% csrf_token %} {{form.as_p}}
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
+
+      <p style="display: block; width: 100%; text-align: center">
+        <a href="{% url 'login' %}">¿Ya tienes cuenta? ¡Loguéate!</a>
+      </p>
+      <p style="display: block; width: 100%; text-align: center">
+        <a href="{% url 'index' %}">Inicio</a>
+      </p>
+    </div>
+  </body>
+</html>

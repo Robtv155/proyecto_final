@@ -1,0 +1,85 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Indice Tutorial</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link href='https://fonts.googleapis.com/css?family=Biryani' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+</head>
+
+<body>
+    <div class="fondo">
+        <ul>
+            <div class="título">
+                <h1>
+                    Tutorial Páginas Curso / Pg 2
+                </h1>
+                <nav>
+                    <ul class="páginas">
+                        <li class="páginas"><a href="{% url 'indice_1' %}">Página 1 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_2' %}">Página 2 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_3' %}">Página 3 /</a></li>
+                        <li class="páginas"><a href="{% url 'indice_4' %}">Página 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="texto">Flexbox es un modelo de diseño en CSS que organiza elementos en una fila o columna,
+                ajustándolos automáticamente para que sean flexibles y responsivos.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'flexbox' %}">Flexbox</a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto">Se usan para controlar el espaciado y diseño en una página web:</p>
+
+            <p class="texto">Margin: Para separar elementos entre sí y evitar que se vean amontonados.</p>
+            <p class="texto">Padding: Para dar espacio dentro de un elemento, evitando que el contenido toque los bordes.</p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="{% url 'margin_padding' %}">Marging y Padding</a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto"></p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="" ></a>
+                    </h2>
+                    <hr>
+                </div>
+            </li>
+            <p class="texto"></p>
+            <li>
+                <div>
+                    <h2>
+                        <a href="" ></a>
+                    </h2>
+                    <hr><br>
+        </ul>
+    </div>
+    <div class="volver">
+        <a href="javascript:history.back()">Volver</a>
+    </div>
+</body>
+<footer>
+    <div class="footer">Página Web creada por Roberto Navarro Ruano. Todos los derechos reservados. 2025.
+    </div>
+</footer>
+
+</html>

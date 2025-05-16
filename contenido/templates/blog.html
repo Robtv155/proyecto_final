@@ -1,0 +1,105 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/blog.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %} Blog inicio {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <style>
+      #cookie-banner{
+        position:fixed; bottom:0; left:0; right:0;           
+        background: #777; color: #222; padding:1rem;
+        text-align: center;
+        }
+    #cookie-banner button{
+    margin:0 .5rem;
+    }
+    </style>
+  
+  </head>
+  <body>
+    <div class="usuario_registrado">
+      Bienvenido, {{ request.user.username }}
+    </div>
+    <nav class="navbar">
+      <a href='{% url "post_list" %}' class="navbar_a">Bienvenido al blog</a>
+    </nav>
+    <div class="imagen_portada">
+      <img src="{% static 'img/monte_fuji.png' %}" alt="Monte Fuji" />
+    </div>
+    <div class="container">
+      {% block content %}
+        <div class="acceder_container">
+          <a href='{% url "post_list" %}' class="boton_acceso">Acceder al blog</a>
+        </div>
+      {% endblock %}
+    </div>
+      <!-- <div id="cookie-banner">
+        Usamos cookies analíticas para mejorar la experiencia de usuario.
+        <button id="btn-accept">Aceptar cookies</button>
+        <button id="btn-reject">Rechazar</button>
+        <a href="{% url 'politica_cookies' %}">Léete nuestra normativa</a>
+      </div> -->
+
+    {% include "partials/cookie_banner.html" %}
+    <div id="meteo" class="tarjeta">
+      <p>Cargando meteo...</p>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch('/weather/?city=Santander')
+          .then(r => r.json())
+          .then(d => {
+            document.getElementById('meteo').innerHTML = 
+              `<strong>${d.city}</strong><br>
+              ${d.temp}&nbsp;ºC<br>
+              <img src="https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title="${d.desc}">`;
+          })
+          .catch(() => {
+            document.getElementById('meteo').textContent = 'Sin Datos';
+          });
+      });
+    </script>
+
+<div id="receta" class="tarjeta">
+  <p>Cargando receta...</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch(`/recipe/?t=${Date.now()}`)
+      .then(r => r.json())
+      .then(d => {
+        if (d.error) {
+          document.getElementById('receta').textContent = 'Sin datos de receta';
+        } else {
+          document.getElementById('receta').innerHTML = `
+            <strong>${d.name}</strong><br>
+            <em>${d.category} - ${d.area}</em><br><br>
+            <img src="${d.image}" alt="${d.name}" title="${d.name}" style="max-width: 100%; height: auto;"><br><br>
+            <p>${d.instructions}</p>
+            ${d.youtube ? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>` : ''}
+          `;
+        }
+      })
+      .catch(() => {
+        document.getElementById('receta').textContent = 'Error al cargar la receta';
+      });
+  });
+</script>
+
+
+
+
+    <script src="{% static 'js/cookie-consent.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+    </body>
+    </html>
+

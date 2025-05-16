@@ -1,0 +1,21 @@
+{% extends 'blog.html' %}
+{% block title %}Post List{% endblock %}
+
+
+{% block content %}
+<h1 class="titulo">Lista de Tags</h1>
+<a href="{% url 'post_list' %}">Lista de posts</a>
+<br><br>
+
+<ul>
+  {% for tag in object_list %}
+  <li class="tarjeta">
+    <p class="tag">{{ tag.name }}</p>
+  </li>
+  <a href="{% url 'tag_delete' tag.pk %}">Elimina el tag</a>
+  <br><br><br>
+  {% endfor %}
+</ul>
+<a href="{% url 'tag_create' %}">Crea un nuevo tag</a>
+
+{% endblock %}

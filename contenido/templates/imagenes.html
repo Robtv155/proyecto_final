@@ -1,0 +1,52 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/tutorial.css' %}"
+/>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Imágenes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Biryani"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="../CSS/tutorial.css"> -->
+  </head>
+
+  <body>
+    <div class="fondo">
+      <div class="título">
+        <h1 style="text-align: center">Imágenes</h1>
+      </div>
+      <pre><p class="texto">
+            Las imágenes pueden mejorar el diseño y la apariencia de una página web.
+                
+            La etiqueta HTML <b>&lt;img&gt;</b> se utiliza para incrustar una imagen en una página web.
+
+            Las imágenes no se insertan técnicamente en una página web; las imágenes se vinculan a las páginas web. La etiqueta <b>&lt;img&gt;</b> crea un 
+            
+            espacio reservado para la imagen referenciada.
+            
+            La etiqueta <b>&lt;img&gt;</b> es vacía, solo contiene atributos y no tiene una etiqueta de cierre.
+            
+            La etiqueta <b>&lt;img&gt;</b> tiene dos atributos obligatorios:
+            
+            <b>&lt;src&gt;</b> - Especifica la ruta de la imagen
+            <b>&lt;alt&gt;</b> - Especifica un texto alternativo para la imagen
+        </p></pre>
+      <!-- acceso a la explicacion de tipos de imágenes -->
+      <div class="volver">
+        <a href="{% url 'svgywebp' %}">Imágenes SVG y Webp</a>
+      </div>
+      <br /><br />
+    </div>
+    <div class="volver">
+      <a href="javascript:history.back()">Volver</a>
+    </div>
+  </body>
+</html>
