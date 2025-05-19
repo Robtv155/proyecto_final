@@ -24,48 +24,6 @@ from .serializers import PostSerializer
 def index(request):
     return render (request, 'index.html')
 
-def menujavahtmlcss(request):
-    return render (request, 'menujavahtmlcss.html')
-
-def indice_1(request):
-    return render (request, 'indice_1.html')
-
-def indice_2(request):
-    return render (request, 'indice_2.html')
-
-def indice_3(request):
-    return render (request, 'indice_3.html')
-
-def indice_4(request):
-    return render (request, 'indice_4.html')
-
-def javascript1(request):
-    return render (request, 'javascript1.html')
-
-def encabezados(request):
-    return render (request, 'encabezados.html')
-
-def direccionamiento(request):
-    return render (request, 'direccionamiento.html')
-
-def atajos_teclado(request):
-    return render (request, 'atajos_teclado.html')
-
-def tablas(request):
-    return render (request, 'tablas.html')
-
-def imagenes(request):
-    return render (request, 'imagenes.html')
-
-def svgywebp(request):
-    return render (request, 'imagenes_svg_y_webp.html')
-
-def flexbox(request):
-    return render (request, 'flexbox.html')
-
-def margin_padding(request):
-    return render (request, 'margin_padding.html')
-    
 def compra(request):
     return render (request, 'tu_compra.html')
 
