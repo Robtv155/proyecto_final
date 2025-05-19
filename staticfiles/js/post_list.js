@@ -6,7 +6,7 @@ function cardHTML(post) {
         <div class="tarjeta">
             <h2>${post.title}</h2>
             <p>${post.content.slice(0, 50)}...</p>
-            <a href="/post/${post.id}/">Lee el post</a>
+            <a href="/post/${post.id}/">Lee el post</a> <br>
             ${(post.tags || []).map(
                 t => `<a class="tag" href="/post_by_tag/${t.id}/">${t.name}</a>`
             ).join('')}

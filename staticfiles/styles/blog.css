@@ -213,7 +213,7 @@ a.button:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top; /* o 50% 0% */
 }
 
 .acceder_container {
@@ -251,28 +251,114 @@ a.button:hover {
   }
 }
 
-/* Modo oscuro 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-fondo: #1e1e1e;
-    --color-texto: #f4f4f4;
-    --color-claro: #2c2c2c;
-    --color-neutro: #444;
-  }
-
-  .container,
-  .tarjeta,
-  .navbar {
-    background-color: var(--color-claro);
-    color: var(--color-texto);
-  }
-
-  input,
-  textarea,
-  select {
-    background-color: #333;
-    color: var(--color-texto);
-    border: 1px solid var(--color-neutro);
-  }
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-*/
+
+/* Navbar */
+body.dark-mode .navbar {
+  background-color: #1e1e1e;
+  color: #ddd;
+  border-bottom: 1px solid #444;
+}
+
+/* Enlaces en la navbar */
+body.dark-mode .navbar a {
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+body.dark-mode .navbar a:hover {
+  color: #fff;
+}
+
+/* Usuario registrado */
+body.dark-mode .usuario_registrado {
+  background-color: #222;
+  color: #ccc;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #444;
+}
+
+/* Imagen portada */
+body.dark-mode .imagen_portada {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+}
+body.dark-mode .imagen_portada img {
+  filter: brightness(0.8);
+  border-radius: 8px;
+  transition: filter 0.3s ease;
+}
+
+/* Contenedor general */
+body.dark-mode .container {
+  background-color: #222;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #0008;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón acceso */
+body.dark-mode .boton_acceso {
+  background-color: #444;
+  color: #eee;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body.dark-mode .boton_acceso:hover {
+  background-color: #666;
+}
+
+/* Tarjetas (meteo, receta, etc.) */
+body.dark-mode .tarjeta {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #eee;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #000a;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enlaces dentro de tarjetas */
+body.dark-mode .tarjeta a {
+  color: #80b3ff;
+}
+body.dark-mode .tarjeta a:hover {
+  color: #aaccff;
+}
+
+/* Otros elementos de texto y enlaces generales */
+body.dark-mode a {
+  color: #80b3ff;
+  text-decoration: none;
+}
+body.dark-mode a:hover {
+  text-decoration: underline;
+  color: #aaccff;
+}
+
+/* Botón modo oscuro (si quieres estilos propios) */
+#modo_btn {
+  background-color: #333;
+  border: none;
+  color: #eee;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #0008;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+#modo_btn:hover {
+  background-color: #555;
+  color: #fff;
+}
