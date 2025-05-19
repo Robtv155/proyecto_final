@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.createElement('button');
-  btn.textContent = '🌙';
-  btn.id = 'modo_btn';
-  btn.style.position = 'fixed';
-  btn.style.top = '1rem';
-  btn.style.right = '1rem';
-  btn.style.zIndex = '1000';
+  const btn = document.getElementById('modo_btn'); // botón existente en el HTML
 
-  document.body.appendChild(btn);
+  if (!btn) {
+    console.warn('Botón modo oscuro no encontrado en el HTML.');
+    return;
+  }
 
   // Recuperar preferencia del usuario
   if (localStorage.getItem('modo') === 'oscuro') {
