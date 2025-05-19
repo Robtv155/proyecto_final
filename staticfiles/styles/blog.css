@@ -347,7 +347,6 @@ body.dark-mode a:hover {
 }
 
 #modo_btn {
-  position: fixed;
   top: 80px; /* antes era ~10px, ahora bajado */
   right: 10px;
   z-index: 1000;
