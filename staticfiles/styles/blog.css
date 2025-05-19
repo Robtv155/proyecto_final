@@ -347,9 +347,10 @@ body.dark-mode a:hover {
 }
 
 #modo_btn {
-  top: 80px; /* antes era ~10px, ahora bajado */
-  right: 10px;
-  z-index: 1000;
+  position: absolute;
+  top: 1rem;         /* Espaciado desde la parte superior de la imagen */
+  right: 1rem;       /* Alineado a la derecha de la imagen */
+  z-index: 10;
   background-color: #222;
   color: #fff;
   border: none;
@@ -361,13 +362,11 @@ body.dark-mode a:hover {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Efecto al pasar el ratón */
 #modo_btn:hover {
   background-color: #444;
   transform: scale(1.05);
 }
 
-/* Modo oscuro */
 body.dark-mode #modo_btn {
   background-color: #333;
   color: #eee;
