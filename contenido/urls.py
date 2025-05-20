@@ -3,6 +3,8 @@ from . import views
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from .views import TagListView, TagCreateView, TagDeleteView, PostbyTagView
 from .views import CommentCreateView
+from .views import PostListAPIView
+
 
 urlpatterns = [
     path('', views.index, name = 'index'),
@@ -24,5 +26,6 @@ urlpatterns = [
     path('blog', views.blog, name = 'blog'),
     path('politica-cookies/', views.politica_cookies, name = 'politica_cookies'),
     path('weather/', views.weather, name ='weather'),
-    path('recipe/', views.recipe, name ='recipe')
+    path('recipe/', views.recipe, name ='recipe'),
+    path('api/posts/', PostListAPIView.as_view(), name='api_post_list'),
 ]

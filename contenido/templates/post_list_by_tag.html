@@ -14,7 +14,7 @@
   <div class="tarjeta">
     <h2>{{ post.title }}</h2>
     <p>{{ post.content |truncatechars:10 }}</p>
-    <a href="{% url 'post_detail' post.pk %}">Lee el post</a>
+    <a href="{% url 'post_detail' post.pk %}">Lee el post</a><br>
     {% for i in post.tags.all %}
       <a href="{% url 'post_list_by_tag' i.pk %}"><p class="tag">{{ i.name }}</p></a>
     {% endfor %}
