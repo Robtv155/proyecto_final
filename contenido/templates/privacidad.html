@@ -1,0 +1,47 @@
+{% extends 'blog.html' %}
+{% block title %}Política de Privacidad{% endblock %}
+
+{% block content %}
+<section class="contenido-principal">
+  <h1 class="titulo">Política de Privacidad</h1>
+
+  <p>En este blog, valoramos y respetamos tu privacidad. A continuación, te explicamos qué datos personales recogemos, para qué los usamos y cuáles son tus derechos.</p>
+
+  <h2>1. Responsable del tratamiento</h2>
+  <ul>
+    <li><strong>Nombre del responsable:</strong> [Tu nombre o alias]</li>
+    <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:saboresyrutas@correo.com">Contacto</a></li>
+    <li><strong>Finalidad del sitio:</strong> Blog personal sobre viajes, recetas y recursos útiles.</li>
+  </ul>
+
+  <h2>2. Qué datos recogemos</h2>
+  <ul>
+    <li><strong>Datos de navegación:</strong> dirección IP, tipo de navegador, sistema operativo, páginas visitadas.</li>
+    <li><strong>Formulario de contacto o comentarios:</strong> nombre (si se proporciona), correo electrónico y mensaje.</li>
+    <li><strong>Lista de la compra:</strong> datos temporales guardados localmente en tu navegador.</li>
+  </ul>
+
+  <h2>3. Finalidad del tratamiento</h2>
+  <ul>
+    <li>Mejorar la experiencia de usuario.</li>
+    <li>Responder a consultas o comentarios.</li>
+    <li>Analizar el uso del blog de forma anónima.</li>
+  </ul>
+
+  <h2>4. Cookies</h2>
+  <p>Este blog utiliza cookies técnicas y, en su caso, cookies de terceros. Puedes gestionarlas desde la configuración de tu navegador.</p>
+  <p>Consulta nuestra <a href="{% url 'politica_cookies' %}">Política de Cookies</a> para más información.</p>
+
+  <h2>5. Derechos del usuario</h2>
+  <p>Tienes derecho a acceder, rectificar o suprimir tus datos personales, así como a limitar u oponerte a su tratamiento. Puedes ejercer estos derechos escribiendo a <a href="mailto:saboresyrutas@correo.com">Contacto</a>.</p>
+
+  <h2>6. Conservación de los datos</h2>
+  <p>Los datos se conservarán solo el tiempo necesario para cumplir con su finalidad. No se cederán a terceros salvo por obligación legal.</p>
+
+  <h2>7. Seguridad</h2>
+  <p>Aplicamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados o usos indebidos.</p>
+
+  <h2>8. Cambios en esta política</h2>
+  <p>Esta política puede actualizarse para adaptarse a nuevas normativas o prácticas. Recomendamos revisarla periódicamente.</p>
+</section>
+{% endblock %}

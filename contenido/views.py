@@ -21,6 +21,12 @@ from .serializers import PostSerializer
 
 # Create your views here.
 
+def privacidad(request):
+    return render(request, 'privacidad.html')
+
+def aviso_legal(request):
+    return render(request, 'aviso_legal.html')
+
 def index(request):
     return render (request, 'index.html')
 

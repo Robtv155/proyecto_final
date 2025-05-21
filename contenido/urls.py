@@ -28,4 +28,6 @@ urlpatterns = [
     path('weather/', views.weather, name ='weather'),
     path('recipe/', views.recipe, name ='recipe'),
     path('api/posts/', PostListAPIView.as_view(), name='api_post_list'),
+    path('privacidad/', views.privacidad, name='privacidad'),
+    path('aviso_legal/', views.aviso_legal, name='aviso_legal'),
 ]
