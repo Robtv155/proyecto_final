@@ -9,36 +9,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %} Blog inicio {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   
     <style>
       #cookie-banner{
         position:fixed; bottom:0; left:0; right:0;           
         background: #777; color: #222; padding:1rem;
         text-align: center;
         }
-    #cookie-banner button{
-    margin:0 .5rem;
-    }
+      #cookie-banner button{
+        margin:0 .5rem;
+      }
     </style>
-  
   </head>
   <body>
     <div class="usuario_registrado">
       Bienvenido, {{ request.user.username }}
     </div>
-      <nav class="navbar">
-        <a href="{% url 'post_list' %}" class="navbar_a">
-        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo_navbar">
-        Bienvenido al blog
-        </a>
-      </nav>
+<nav class="navbar">
+  <a href="{% url 'post_list' %}" class="navbar_a">
+    <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo_navbar">
+    Bienvenido al blog
+  </a>
+</nav>
 
-<div class="imagen_portada" style="position: relative;">
+<div class="imagen_portada">
   <img src="{% static 'img/monte_fuji.png' %}" alt="Monte Fuji" />
   <h1 class="banner_titulo">Sabores y rutas</h1>
   <button id="modo_btn">🌙</button>
+  <a href="{% url 'compra' %}" class="boton_compra_flotante" title="Ir a la lista de la compra">🛒</a>
+
 </div>
+
+
     <div class="container">
       {% block content %}
         <div class="acceder_container">
@@ -46,99 +47,131 @@
         </div>
       {% endblock %}
     </div>
-      <!-- <div id="cookie-banner">
-        Usamos cookies analíticas para mejorar la experiencia de usuario.
-        <button id="btn-accept">Aceptar cookies</button>
-        <button id="btn-reject">Rechazar</button>
-        <a href="{% url 'politica_cookies' %}">Léete nuestra normativa</a>
-      </div> -->
 
     {% include "partials/cookie_banner.html" %}
-    <div id="meteo" class="tarjeta">
-      <p>Cargando meteo...</p>
+
+    <div class="seccion_apis">
+      <div class="tarjeta" id="meteo">
+        <h3>Tiempo actual</h3>
+        <form id="form-ciudad">
+          <input type="text" id="ciudad" placeholder="Introduce una ciudad..." />
+          <button type="submit">Buscar</button>
+        </form>
+        <div id="meteo-contenido">
+          <p>Cargando meteo...</p>
+        </div>
+      </div>
+
+      <div class="tarjeta" id="receta">
+        <h3>Receta aleatoria</h3>
+        <div id="receta-contenido">
+          <p>Cargando receta...</p>
+        </div>
+      </div>
     </div>
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        fetch('/weather/?city=Santander')
+        // Cargar clima por defecto
+        cargarClima('Santander');
+
+        // Manejador del formulario
+        document.getElementById('form-ciudad').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const ciudad = document.getElementById('ciudad').value.trim();
+          if (ciudad) {
+            cargarClima(ciudad);
+          }
+        });
+
+        function cargarClima(ciudad) {
+          const contenedor = document.getElementById('meteo-contenido');
+          contenedor.innerHTML = '<p>Cargando meteo...</p>';
+
+          fetch(`/weather/?city=${encodeURIComponent(ciudad)}`)
+            .then(r => r.json())
+            .then(d => {
+              contenedor.innerHTML = `
+  <h4>${d.city}, ${d.country}</h4>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <img src="https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title="${d.desc}">
+    <div>
+      <p><strong>${d.temp} ºC</strong> (${d.desc})</p>
+      <p>Sensación térmica: ${d.feels_like} ºC</p>
+    </div>
+  </div>
+  <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+    <li><strong>Mínima:</strong> ${d.temp_min} ºC / <strong>Máxima:</strong> ${d.temp_max} ºC</li>
+    <li><strong>Humedad:</strong> ${d.humidity}%</li>
+    <li><strong>Viento:</strong> ${d.wind_speed} m/s (${d.wind_deg}°)</li>
+    <li><strong>Hora local:</strong> ${d.localtime}</li>
+  </ul>
+`;
+
+            })
+            .catch(() => {
+              contenedor.textContent = 'Sin Datos';
+            });
+        }
+
+        // Cargar receta
+        fetch(`/recipe/?t=${Date.now()}`)
           .then(r => r.json())
           .then(d => {
-            document.getElementById('meteo').innerHTML = 
-              `<strong>${d.city}</strong><br>
-              ${d.temp}&nbsp;ºC<br>
-              <img src="https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title="${d.desc}">`;
+            const contenedor = document.getElementById('receta-contenido');
+            if (d.error) {
+              contenedor.textContent = 'Sin datos de receta';
+            } else {
+              contenedor.innerHTML = `
+                <strong>${d.name}</strong><br>
+                <em>${d.category} - ${d.area}</em><br><br>
+                <img src="${d.image}" alt="${d.name}" title="${d.name}" style="max-width: 100%; height: auto;"><br><br>
+                <p>${d.instructions}</p>
+                ${d.youtube ? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>` : ''}
+              `;
+            }
           })
           .catch(() => {
-            document.getElementById('meteo').textContent = 'Sin Datos';
+            document.getElementById('receta-contenido').textContent = 'Error al cargar la receta';
           });
       });
     </script>
 
-<div id="receta" class="tarjeta">
-  <p>Cargando receta...</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch(`/recipe/?t=${Date.now()}`)
-      .then(r => r.json())
-      .then(d => {
-        if (d.error) {
-          document.getElementById('receta').textContent = 'Sin datos de receta';
-        } else {
-          document.getElementById('receta').innerHTML = `
-            <strong>${d.name}</strong><br>
-            <em>${d.category} - ${d.area}</em><br><br>
-            <img src="${d.image}" alt="${d.name}" title="${d.name}" style="max-width: 100%; height: auto;"><br><br>
-            <p>${d.instructions}</p>
-            ${d.youtube ? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>` : ''}
-          `;
-        }
-      })
-      .catch(() => {
-        document.getElementById('receta').textContent = 'Error al cargar la receta';
-      });
-  });
-</script>
-
     <script src="{% static 'js/cookie-consent.js' %}" defer></script>
     <script src="{% static 'js/modo-oscuro.js' %}" defer></script>
 
-<footer class="footer">
-  <div class="footer_contenedor">
+    <footer class="footer">
+      <div class="footer_contenedor">
         <div class="footer_seccion logo_footer">
-      <img src="{% static 'img/logo.png' %}" alt="Logo Sabores y Rutas">
-    </div>
-    <div class="footer_seccion">
-      <h4>Sabores y rutas</h4>
-      <p>Un blog sobre viajes y gastronomía. Explora culturas a través de sus sabores.</p>
-    </div>
-    <div class="footer_seccion">
-      <h4>Enlaces útiles</h4>
-      <ul>
-        <li><a href="mailto:saboresyrutas@correo.com">Contacto</a></li>
-        <li><a href="{% url 'politica_cookies' %}">Política de cookies</a></li>
-        <li><a href="{% url 'privacidad' %}">Política de privacidad</a></li>
-        <li><a href="{% url 'aviso_legal' %}">Aviso legal</a></li>
-      </ul>
-    </div>
-    <div class="footer_seccion">
-      <h4>Síguenos</h4>
-      <ul class="footer_social">
-        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-        <li><a href="https://twitter.com" target="_blank">Twitter/X</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer_copyright">
-    &copy; {% now "Y" %} Sabores y rutas · Todos los derechos reservados
-  </div>
-</footer>
-
-
+          <img src="{% static 'img/logo.png' %}" alt="Logo Sabores y Rutas">
+        </div>
+        <div class="footer_seccion">
+          <h4>Sabores y rutas</h4>
+          <p>Un blog sobre viajes y gastronomía. Explora culturas a través de sus sabores.</p>
+        </div>
+        <div class="footer_seccion">
+          <h4>Enlaces útiles</h4>
+          <ul>
+            <li><a href="mailto:saboresyrutas@correo.com">Contacto</a></li>
+            <li><a href="{% url 'politica_cookies' %}">Política de cookies</a></li>
+            <li><a href="{% url 'privacidad' %}">Política de privacidad</a></li>
+            <li><a href="{% url 'aviso_legal' %}">Aviso legal</a></li>
+          </ul>
+        </div>
+        <div class="footer_seccion">
+          <h4>Síguenos</h4>
+          <ul class="footer_social">
+            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+            <li><a href="https://twitter.com" target="_blank">Twitter/X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer_copyright">
+        &copy; {% now "Y" %} Sabores y rutas · Todos los derechos reservados
+      </div>
+    </footer>
 
     {% block extra_js %}{% endblock %}
-    </body>
-    </html>
-
+  </body>
+</html>

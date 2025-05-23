@@ -7,7 +7,7 @@ from .views import PostListAPIView
 
 
 urlpatterns = [
-    path('', views.index, name = 'index'),
+    path('', views.inicio, name = 'index'),
     path('tu_compra/', views.compra, name='compra'),
     path('login/', views.loginView, name='login'),
     path('registro/', views.registroView, name='registro'),

@@ -13,6 +13,8 @@ import requests
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
 from django.conf import settings
+from django.utils.timezone import now
+from datetime import datetime
 #pagination
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import generics
@@ -20,6 +22,9 @@ from .serializers import PostSerializer
 
 
 # Create your views here.
+
+def inicio(request):
+    return render(request, 'inicio.html')
 
 def privacidad(request):
     return render(request, 'privacidad.html')
@@ -229,24 +234,36 @@ def custom_500(request):
 @cache_page(60*30) #1800s
 def weather(request):
     city = request.GET.get('city', 'Santander')
-    params = {
-        'q' : city,
-        'units' : 'metric',
-        'appid' : settings.OWN_KEY,
-        'lang' : 'es'
-    }
-    r = requests.get(
-        'https://api.openweathermap.org/data/2.5/weather',
-        params=params, timeout=5
-    )
-    data = r.json()
-    respuesta = {
-        'city': data['name'],
-        'temp': data['main']['temp'],
-        'icon': data ['weather'][0]['icon'],
-        'desc': data ['weather'][0]['description'],
-    }
-    return JsonResponse(respuesta)
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=es&appid={settings.OWN_KEY}'
+
+    try:
+        r = requests.get(url)
+        r.raise_for_status()
+        data = r.json()
+
+        timezone_offset = data.get('timezone', 0)
+        utc_now = datetime.utcnow()
+        local_time = utc_now.timestamp() + timezone_offset
+        localtime_str = datetime.fromtimestamp(local_time).strftime('%H:%M (%d %b %Y)')
+
+        response = {
+            'city': data['name'],
+            'country': data['sys']['country'],
+            'temp': round(data['main']['temp']),
+            'temp_min': round(data['main']['temp_min']),
+            'temp_max': round(data['main']['temp_max']),
+            'feels_like': round(data['main']['feels_like']),
+            'humidity': data['main']['humidity'],
+            'wind_speed': data['wind']['speed'],
+            'wind_deg': data['wind'].get('deg', 0),
+            'desc': data['weather'][0]['description'],
+            'icon': data['weather'][0]['icon'],
+            'localtime': localtime_str,
+        }
+        return JsonResponse(response)
+
+    except Exception:
+        return JsonResponse({'error': 'No se pudo obtener el clima'}, status=500)
 
 def recipe(request):
     key_meal = settings.OWN_KEY2

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Bienvenido{% endblock %}
+
+{% block content %}
+  <h1>Blog de Roberto Navarro Ruano</h1>
+  <hr>
+  <h1>Bienvenido</h1>
+
+  {% if user.is_authenticated %}
+    <p style="text-align: center;">Hola, {{ user.username }}</p>
+    <div class="acceder_container">
+      <a href="{% url 'blog' %}" class="boton_acceso">Entrar</a>
+    </div>
+    <p style="text-align: center; margin-top: 1rem;">
+      <a href="{% url 'logout' %}">Cierra sesión</a>
+    </p>
+  {% else %}
+    <p style="text-align: center;">
+      <a href="{% url 'login' %}">Inicia sesión</a>
+    </p>
+  {% endif %}
+
+  <hr />
+  {% for mensaje in messages %}
+    <p style="color: var(--color-primario); text-align: center;">
+      {{ mensaje }}
+    </p>
+  {% endfor %}
+{% endblock %}
