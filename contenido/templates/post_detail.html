@@ -7,13 +7,19 @@
 <p>Creado por: {{ object.author }}</p>
 <p>Fecha: {{ object.created_at }}</p>
 
-{% for tag in object.tags.all %}
+<div class="tags">
+  {% for tag in object.tags.all %}
+    <a class="tag" href="{% url 'post_list_by_tag' tag.pk %}">{{ tag.name }}</a>
+  {% endfor %}
+</div>
+
+<!-- {% for tag in object.tags.all %}
 <ul>
 <li>
   <p class="tag">{{ tag.name }}</p>
 </li>
 </ul>
-{% endfor %}
+{% endfor %} -->
 
 {% if user.is_superuser or user == object.author %}
 <a href="{% url 'post_update' object.pk %}">Editar</a>

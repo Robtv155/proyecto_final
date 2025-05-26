@@ -388,34 +388,41 @@ a.button:hover {
   margin: 0.3rem 0;
 }
 
-
 #form-ciudad {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
+#form-ciudad input,
+#form-ciudad button {
+  height: 2.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
 #form-ciudad input {
   flex: 1;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0 0.5rem;
   border: 1px solid var(--color-borde);
   background-color: var(--color-input-bg);
   color: var(--color-texto);
 }
 
 #form-ciudad button {
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   background-color: var(--color-acento);
   color: white;
   border: none;
-  border-radius: 0.5rem;
   cursor: pointer;
 }
 
 #form-ciudad button:hover {
   opacity: 0.9;
 }
+
 
 .imagen_portada {
   position: relative;
@@ -496,10 +503,25 @@ a.button:hover {
 /* ===================
    2. MODO OSCURO
    =================== */
+/* ===================
+   2. MODO OSCURO
+   =================== */
 body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #aadfff;
+  text-decoration: none;
+}
+body.dark-mode a:visited {
+  color: #c8a2c8;
+}
+body.dark-mode a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 body.dark-mode .navbar {
@@ -534,90 +556,122 @@ body.dark-mode .imagen_portada img {
 
 body.dark-mode .container {
   background-color: #222;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #0008;
+  border: 1px solid #444;
+  color: #e0e0e0;
 }
 
-body.dark-mode .boton_acceso {
-  background-color: #444;
-  color: #eee;
-}
-body.dark-mode .boton_acceso:hover {
-  background-color: #666;
+body.dark-mode .container h1,
+body.dark-mode .container h2,
+body.dark-mode .container h3 {
+  color: #a8d08d;
 }
 
 body.dark-mode .tarjeta {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  color: #eee;
-  box-shadow: 0 0 5px #000a;
-}
-
-body.dark-mode .tarjeta a {
-  color: #80b3ff;
-}
-body.dark-mode .tarjeta a:hover {
-  color: #aaccff;
-}
-
-body.dark-mode a {
-  color: #80b3ff;
-}
-body.dark-mode a:hover {
-  color: #aaccff;
-  text-decoration: underline;
-}
-
-body.dark-mode #modo_btn {
-  background-color: #000;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode #modo_btn:hover {
-  background-color: #222;
-}
-
-body.dark-mode .banner_titulo {
-  color: #ffffff;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-body.dark-mode #formulario {
-  background-color: #1f2a29;
-  border: 1px solid #444;
+  background-color: #1e1e1e;
+  border-color: #333;
   color: #e0e0e0;
 }
 
-body.dark-mode #formulario input[type="text"],
-body.dark-mode #formulario textarea,
-body.dark-mode #formulario select {
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-  border: 1px solid #555;
+body.dark-mode .tarjeta h2,
+body.dark-mode .tarjeta h3 {
+  color: #ffa07a;
 }
 
+body.dark-mode .tag {
+  background-color: #2a6f97;
+  color: #e0e0e0;
+}
+
+body.dark-mode .tag:hover {
+  background-color: #1f4e70;
+}
 
 body.dark-mode .footer {
   background-color: #1e1e1e;
-  color: #ddd;
+  color: #ccc;
 }
 
 body.dark-mode .footer a {
   color: #ccc;
 }
-
 body.dark-mode .footer a:hover {
+  color: #ffa07a;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2a2a2a;
+  color: #ddd;
+  border: 1px solid #444;
+}
+
+body.dark-mode #formulario {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode button,
+body.dark-mode input[type="submit"],
+body.dark-mode a.button {
+  background-color: #6b8e23;
   color: #fff;
 }
 
-body.dark .boton_compra_flotante {
-  background-color: #48bb78;
+body.dark-mode button:hover,
+body.dark-mode input[type="submit"]:hover,
+body.dark-mode a.button:hover {
+  background-color: #556b2f;
 }
-body.dark .boton_compra_flotante:hover {
-  background-color: #38a169;
+
+body.dark-mode .boton_acceso {
+  background-color: #d2691e;
+  color: white;
 }
+body.dark-mode .boton_acceso:hover {
+  background-color: #b35017;
+}
+
+body.dark-mode .boton_compra_flotante {
+  background-color: #333;
+  color: white;
+}
+body.dark-mode .boton_compra_flotante:hover {
+  background-color: #444;
+}
+
+body.dark-mode #modo_btn {
+  background-color: #333;
+  color: white;
+}
+body.dark-mode #modo_btn:hover {
+  background-color: #444;
+}
+
+body.dark-mode #form-ciudad input {
+  background-color: #2a2a2a;
+  color: #ddd;
+  border: 1px solid #444;
+}
+
+body.dark-mode #form-ciudad button {
+  background-color: #d2691e;
+  color: white;
+}
+
+body.dark-mode .tag-inline {
+  background-color: #444;
+  color: #eee;
+}
+
+body.dark-mode .tag-remove {
+  color: #ff5555;
+}
+body.dark-mode .tag-remove:hover {
+  color: #ff2222;
+}
+
 
 /* ===================
    3. RESPONSIVE

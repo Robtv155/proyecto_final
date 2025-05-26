@@ -170,6 +170,7 @@ class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
 class TagListView(ListView):
     model = Tag
     template_name = "tag_list.html"
+    ordering = ['name']
 
 class TagCreateView(CreateView):
     model = Tag

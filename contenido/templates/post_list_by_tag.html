@@ -15,7 +15,7 @@
 
     <div class="tags-container">
       {% for tag in post.tags.all %}
-      <span class="tag-inline">
+      <span class="tag">
         {{ tag.name }}
         <a href="{% url 'tag_delete' tag.pk %}" class="tag-remove" title="Eliminar tag">&times;</a>
       </span>
