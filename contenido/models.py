@@ -22,7 +22,7 @@ class Tag(models.Model):
 class Comment(models.Model):
     content=models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     created_at= models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

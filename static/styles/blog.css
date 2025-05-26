@@ -486,6 +486,11 @@ a.button:hover {
   color: darkred;
 }
 
+:focus {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
 
 
 /* Animaciones */
@@ -503,9 +508,7 @@ a.button:hover {
 /* ===================
    2. MODO OSCURO
    =================== */
-/* ===================
-   2. MODO OSCURO
-   =================== */
+
 body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
@@ -530,12 +533,18 @@ body.dark-mode .navbar {
   border-bottom: 1px solid #444;
 }
 
-body.dark-mode .navbar a {
-  color: #ccc;
+body.dark-mode .navbar_a {
+  color: #aadfff;
+  text-decoration: none;
 }
-body.dark-mode .navbar a:hover {
-  color: #fff;
+body.dark-mode .navbar_a:visited {
+  color: #c8a2c8;
 }
+body.dark-mode .navbar_a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 
 body.dark-mode .usuario_registrado {
   background-color: #222;

@@ -100,18 +100,42 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
 
-class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
+# class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
+#     model = Post
+#     form_class = PostForm
+#     template_name = "post_create.html"
+#     success_url = reverse_lazy('post_list')
+
+#     def test_func(self):
+#         obj=self.get_object()
+#         return self.request.user == obj.author or self.request.user.is_superuser
+
+#     def form_valid(self, form):
+#         post = form.save(commit = False)
+#         post.author = self.request.user
+#         post.save()
+
+#         tag_string = form.cleaned_data.get('tag_string', '')
+#         if tag_string:
+#             tag_name = [t.strip() for t in tag_string.split(',') if t.strip()]
+#             for name in tag_name:
+#                 exists = Tag.objects.filter(name__iexact = name).exists()
+#                 if not exists:
+#                     new_tag = Tag.objects.create(name=name)
+#                     post.tags.add(new_tag)
+#                 else:
+#                     existing_tag = Tag.objects.get(name__iexact = name)
+#                     post.tags.add(existing_tag)
+#         return super().form_valid(form)
+
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "post_create.html"
     success_url = reverse_lazy('post_list')
 
-    def test_func(self):
-        obj=self.get_object()
-        return self.request.user == obj.author or self.request.user.is_superuser
-
     def form_valid(self, form):
-        post = form.save(commit = False)
+        post = form.save(commit=False)
         post.author = self.request.user
         post.save()
 
@@ -119,14 +143,15 @@ class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
         if tag_string:
             tag_name = [t.strip() for t in tag_string.split(',') if t.strip()]
             for name in tag_name:
-                exists = Tag.objects.filter(name__iexact = name).exists()
+                exists = Tag.objects.filter(name__iexact=name).exists()
                 if not exists:
                     new_tag = Tag.objects.create(name=name)
                     post.tags.add(new_tag)
                 else:
-                    existing_tag = Tag.objects.get(name__iexact = name)
+                    existing_tag = Tag.objects.get(name__iexact=name)
                     post.tags.add(existing_tag)
         return super().form_valid(form)
+
 
 class PostUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
@@ -195,25 +220,45 @@ class PostbyTagView(DetailView):
     model = Tag
     template_name = "post_list_by_tag.html"
 
+# class CommentCreateView(CreateView):
+#     model = Comment
+#     form_class = CommentForm
+#     template_name = 'comment_create.html'
+
+#     def test_func(self):
+#         obj = self.get_object()
+#         return self.request.user == obj.author or self.request.user.is_superuser
+    
+#     def form_valid(self, form):
+#          comentario = form.save(commit=False)   
+#          post = Post.objects.get(pk=self.kwargs['pk'])
+#          comentario.post = post     
+#          comentario.author = self.request.user  
+#          comentario.save()
+#          return super().form_valid(form)
+
+#     def get_success_url(self):
+#         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+
+
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'comment_create.html'
 
-    def test_func(self):
-        obj = self.get_object()
-        return self.request.user == obj.author or self.request.user.is_superuser
-    
     def form_valid(self, form):
-         comentario = form.save(commit=False)   
-         post = Post.objects.get(pk=self.kwargs['pk'])
-         comentario.post = post     
-         comentario.author = self.request.user  
-         comentario.save()
-         return super().form_valid(form)
+        comentario = form.save(commit=False)
+        post = Post.objects.get(pk=self.kwargs['pk'])
+        comentario.post = post
+        if self.request.user.is_authenticated:
+            comentario.author = self.request.user
+        comentario.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+
+
     
 def blog(request):
     return render (request, 'blog.html')
