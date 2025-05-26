@@ -4,10 +4,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <title>Lista de la Compra</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/compra.css' %}" />
   </head>
   <body>
+<nav class="navbar">
+  <a href="{% url 'post_list' %}" class="navbar-title">Sabores y Rutas</a>
+  <a href="{% url 'post_list' %}" class="navbar_a" role="button">Volver al blog</a>
+</nav>
+
+
+
     <header>
       <h1 class="cinta" id="titulo">TU COMPRA</h1>
     </header>
@@ -36,16 +44,7 @@
       </svg>
     </div>
 
-    <!-- Botón de modo oscuro y selector de idioma -->
-    <button class="modo_btn" id="modo_btn">🌙</button>
-    <select class="lenguaje" id="language">
-      <option value="es">Castellano</option>
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="de">Deutsch</option>
-      <option value="it">Italiano</option>
-      <option value="kl">Klingon</option>
-    </select>
+
 
     <!-- Contenido principal agrupado -->
     <div class="main-wrapper">
@@ -69,7 +68,18 @@
       </div>
     </div>
 
+        <!-- Botón de modo oscuro y selector de idioma -->
+    <button class="modo_btn" id="modo_btn">🌙</button>
+    <select class="lenguaje" id="language">
+      <option value="es">Castellano</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="kl">Klingon</option>
+    </select>
+
     <!-- Scripts -->
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/compra.js' %}"></script>
   </body>
 </html>

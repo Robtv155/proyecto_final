@@ -1,3 +1,60 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap');
+
+/* Variables de color */
+:root {
+  --color-fondo: #f6f4f0;
+  --color-texto: #2e2e2e;
+  --color-primario: #6b8e23;
+  --color-secundario: #4682b4;
+  --color-acento: #d2691e;
+  --color-claro: #ffffff;
+  --color-neutro: #e0e0e0;
+  --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar */
+.navbar {
+  position: relative;
+  z-index: 10;
+  background-color: var(--color-primario);
+  color: var(--color-claro);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Título o logo en navbar */
+.navbar .navbar-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* Estilo para los enlaces dentro del navbar */
+.navbar_a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--color-texto, #333);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+}
+
+.navbar_a:hover {
+  color: var(--color-acento);
+  background-color: rgba(107, 142, 35, 0.1); /* color-primario translúcido */
+}
+
 /* Reset básico */
 * {
   margin: 0;
@@ -7,9 +64,21 @@
 }
 
 body {
-  background: url("../img/supermercado.jpg") no-repeat center center/cover;
+  background: url('/static/img/manzanas_fondo.jpg') no-repeat center center/cover;
   min-height: 100vh;
   margin: 0;
+  position: relative;
+  z-index: 0;
+}
+
+/* Capa de oscurecimiento para modo oscuro */
+body.modo_oscuro::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: inherit;
+  filter: brightness(0.3);
+  z-index: -1;
 }
 
 /* Contenedor general */
@@ -19,16 +88,22 @@ body {
   justify-content: space-evenly;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   gap: 20px;
+  margin-top: -5px
 }
 
-/* Carrito */
 .carrito {
-  position: absolute;
-  top: 0px;
-  left: 95px;
-  width: 50px;
+  position: relative;
+  margin-top: 5px; /* separación del navbar */
+  margin-left: 90px; /* espacio para que quede a la derecha de la cinta (200px + margen) */
+  width: 80px;
+  height: auto;
+  z-index: 5;
+}
+
+.carrito svg {
+  width: 100%;
   height: auto;
 }
 
@@ -171,7 +246,7 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 70%;
   max-width: 400px;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 h2 {
@@ -212,173 +287,163 @@ h4 {
   color: #333;
 }
 
-/* Cinta */
 .cinta {
-  background-color: darkolivegreen;
-  font-family: "Great Vibes", cursive;
-  text-align: center;
-  color: antiquewhite;
-  margin-top: 90px;
-  height: 900px;
-  width: 200px;
+  position: absolute;
+  top: 70px; /* Altura del navbar */
+  left: 0;
+  height: calc(100vh - 70px);
+  width: 60px;
+  background-color: var(--color-primario);
+  color: var(--color-claro);
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  font-size: 28px;
-  font-weight: bold;
+  z-index: 5;
+}
+
+/* Letras individuales en vertical */
+.cinta span {
+  display: block;
+  line-height: 1.2;
+  margin: 0;
+  cursor: default;
 }
 
 /* Botón modo */
 .modo_btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
+  position: fixed;
+  top: 80px;
+  right: 20px;
   width: 30px;
   height: 30px;
   background-color: #333;
   border-radius: 25%;
+  z-index: 1000;
 }
 
 /* Selector idioma */
 .lenguaje {
-  position: absolute;
-  top: 50px;
+  position: fixed;
+  top: 120px;
   right: 20px;
   width: 90px;
   height: 30px;
   background-color: #abe0e8;
   border-radius: 15%;
+  z-index: 1000;
 }
 
-/* Modo oscuro */
-.modo_oscuro {
-  background: url("../img/supermercado_dark.jpg") no-repeat center center/cover;
+/* Modo oscuro: ajustes de color en texto y fondos */
+
+body.modo_oscuro {
   color: white;
 }
 
-.modo_oscuro .modo_btn {
-  background-color: rgb(8, 172, 242);
+body.modo_oscuro .navbar {
+  background-color: #4a6b15; /* un verde más oscuro que var(--color-primario) */
+  color: white;
 }
 
-.modo_oscuro .container {
+body.modo_oscuro .navbar .navbar-title {
+  color: #ddd;
+}
+
+body.modo_oscuro .navbar_a {
+  color: #ddd;
+}
+
+body.modo_oscuro .navbar_a:hover {
+  color: var(--color-acento);
+  background-color: rgba(107, 142, 35, 0.3);
+}
+
+body.modo_oscuro .container {
   background: rgba(21, 2, 57, 0.9);
   box-shadow: 0 4px 10px rgba(246, 237, 237, 0.8);
-}
-
-.modo_oscuro h1 {
   color: #cec6c6;
 }
 
-.modo_oscuro .añadir_producto button {
+body.modo_oscuro h1 {
+  color: #cec6c6;
+}
+
+body.modo_oscuro .añadir_producto button {
   background: #28a745;
   color: rgba(21, 2, 57);
   border: rgba(229, 234, 239);
 }
 
-.modo_oscuro .añadir_producto input {
+body.modo_oscuro .añadir_producto input {
   background-color: #030a05;
   color: rgb(255, 249, 250);
   border: 1px solid rgba(229, 234, 239);
 }
 
-.modo_oscuro #lista_productos li {
+body.modo_oscuro #lista_productos li {
   border: 1px solid #ddd;
   background: #000;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.modo_oscuro #lista_productos li button {
+body.modo_oscuro #lista_productos li button {
   color: black;
 }
 
-.modo_oscuro #lista_productos li input {
+body.modo_oscuro #lista_productos li input {
   border: 1px solid #ddd;
   background: #000;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   color: rgb(255, 249, 250);
 }
 
-.modo_oscuro .cinta {
+body.modo_oscuro .cinta {
   color: black;
 }
 
-.modo_oscuro .ticket {
-  background: rgb(30, 0, 0);
-  box-shadow: 0 4px 10px rgba(247, 245, 245, 0.2);
+body.modo_oscuro .ticket {
+  background-color: #2a0000;
+  box-shadow: 0 4px 10px rgba(200, 180, 180, 0.5);
   color: #d08f8f;
 }
 
-.modo_oscuro #lista_ticket li button {
-  color: black;
+body.modo_oscuro #lista_ticket {
+  background-color: transparent;
+  color: #d08f8f;
 }
 
-.modo_oscuro #lista_ticket {
-  background-color: #333;
-  color: #ccc;
+body.modo_oscuro #lista_ticket li {
+  background-color: #3b0000;
+  border-color: #600000;
+  color: #d08f8f;
+  box-shadow: none;
 }
 
-.modo_oscuro #lista_ticket li {
-  background: #080808;
-  box-shadow: 2px 2px 5px rgba(250, 248, 248, 0.1);
+body.modo_oscuro #lista_ticket li button {
+  background-color: #d08f8f;
+  color: #3b0000;
 }
 
-.modo_oscuro .ticket h2,
-.modo_oscuro .ticket h4 {
-  color: rgb(227, 198, 198);
+body.modo_oscuro #lista_ticket li button:hover {
+  background-color: #a06060;
+  color: white;
 }
+
 
 /* Responsive */
-@media (max-width: 768px) {
+@media screen and (max-width: 700px) {
   .main-wrapper {
     flex-direction: column;
-    align-items: center;
-    padding: 10px;
+    padding: 20px 5px;
   }
-
   .carrito {
-    left: 10px;
-    top: 10px;
-    width: 40px;
+    margin-left: 0;
   }
-
-  .container,
-  .ticket {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px 0;
-  }
-
-  .añadir_producto {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .prod,
-  .numb,
-  .añadir_producto button {
-    width: 100%;
-  }
-
-  #lista_productos li,
-  #lista_ticket li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .cinta {
-    writing-mode: horizontal-tb;
-    height: auto;
-    width: 100%;
-    font-size: 20px;
-    margin: 20px 0;
-  }
-
-  .modo_btn,
-  .lenguaje {
-    top: auto;
-    bottom: 10px;
-    right: 10px;
+    display: none;
   }
 }

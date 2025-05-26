@@ -5,308 +5,441 @@
 :root {
   --color-fondo: #f6f4f0;
   --color-texto: #2e2e2e;
-  --color-primario: #6b8e23; /* verde oliva */
-  --color-secundario: #4682b4; /* azul acero */
-  --color-acento: #d2691e; /* chocolate */
+  --color-primario: #6b8e23;
+  --color-secundario: #4682b4;
+  --color-acento: #d2691e;
   --color-claro: #ffffff;
   --color-neutro: #e0e0e0;
   --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.05);
-  --transicion-suave: 0.3s ease-in-out;
 }
 
-/* Modo oscuro */
-body.modo-oscuro {
-  --color-fondo: #1e1e1e;
-  --color-texto: #e0e0e0;
-  --color-primario: #8fb339;
-  --color-secundario: #5a8bd4;
-  --color-acento: #d87f3f;
-  --color-neutro: #333;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-}
-
-/* Fondo con imagen manzanas */
-body {
-  margin: 0;
-  font-family: 'Quicksand', sans-serif;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  background-image: url('/static/img/manzanas_fondo.jpg');
-  background-repeat: repeat;
-  background-size: 150px 150px;
-  min-height: 100vh;
-  transition: background-color var(--transicion-suave), color var(--transicion-suave);
-}
-
-/* Header blog fijo */
-.header-blog {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* Navbar */
+.navbar {
   background-color: var(--color-primario);
   color: var(--color-claro);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--sombra-suave);
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Título o logo en navbar */
+.navbar .navbar-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 1.8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  box-shadow: var(--sombra-suave);
-  z-index: 1000;
+  color: var(--color-claro);
+  text-decoration: none;
 }
 
-.header-blog .blog-title {
+/* Estilo para los enlaces dentro del navbar */
+.navbar .navbar_a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-claro);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+}
+
+/* Hover para enlaces */
+.navbar .navbar_a:hover,
+.navbar .navbar_a:focus {
+  color: var(--color-acento);
+  background-color: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url('static/img/manzanas_fondo.jpg') no-repeat center center/cover;
+  min-height: 100vh;
   margin: 0;
 }
 
-#volver-blog {
-  background: var(--color-secundario);
-  color: var(--color-claro);
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1rem;
-}
-
-#volver-blog:hover {
-  background-color: var(--color-acento);
-}
-
-/* Cinta lateral */
-.cinta {
-  position: fixed;
-  top: 60px; /* justo debajo del header */
-  left: 0;
-  background-color: var(--color-primario);
-  color: var(--color-claro);
-  padding: 0.8rem 1.2rem;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  white-space: nowrap;
-  box-shadow: var(--sombra-suave);
-  z-index: 900;
-  user-select: none;
-}
-
-/* Main wrapper */
+/* Contenedor general */
 .main-wrapper {
-  margin-top: 70px; /* para que no quede bajo header */
-  margin-left: 130px; /* espacio para la cinta */
-  padding: 2rem;
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+  padding: 20px;
+  gap: 20px;
 }
 
-/* Sección carrito, modo oscuro y selector idioma */
-.carrito-seccion {
-  position: fixed;
-  top: 70px;
-  right: 2rem;
+/* Carrito */
+.carrito {
+  position: absolute;
+  top: 0px;
+  left: 95px;
+  width: 50px;
+  height: auto;
+}
+
+/* Contenedor principal */
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Entrada de productos */
+.añadir_producto {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  z-index: 900;
+  gap: 10px;
 }
 
-/* Carrito SVG */
-.carrito svg {
-  width: 120px;
-  height: 120px;
-  color: var(--color-primario);
-  transition: color var(--transicion-suave);
-}
-
-/* Botón modo oscuro */
-.modo_btn {
-  background-color: var(--color-secundario);
-  border: none;
-  color: var(--color-claro);
-  padding: 0.5rem 0.8rem;
+.prod {
+  flex: 3;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.3rem;
-  transition: background-color var(--transicion-suave);
+  outline: none;
 }
 
-.modo_btn:hover {
-  background-color: var(--color-acento);
+.numb {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  max-width: 100px;
+}
+
+.añadir_producto button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.añadir_producto button:hover {
+  background: #218838;
+}
+
+/* Lista de productos */
+#lista_productos {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+#lista_productos li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lista_productos li .producto-info {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+#lista_productos li .producto-info span {
+  margin-right: 10px;
+}
+
+#lista_productos li .precio-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+#lista_productos li button {
+  background: #3599e5;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+#lista_productos li button:hover {
+  background: #2303b0;
+}
+
+#lista_ticket li button {
+  background: #e53535;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-size: 12px;
+  height: auto;
+  min-width: 70px;
+  text-align: center;
+}
+
+#lista_ticket li button:hover {
+  background: #f00505d9;
+}
+
+.numb2 {
+  width: 110px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* Ticket */
+.ticket {
+  background: rgba(229, 234, 239, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#lista_ticket {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#lista_ticket li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lista_ticket li .ticket_info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+h4 {
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: right;
+  color: #333;
+}
+
+/* Cinta */
+.cinta {
+  background-color: darkolivegreen;
+  font-family: "Great Vibes", cursive;
+  text-align: center;
+  color: antiquewhite;
+  margin-top: 90px;
+  height: 900px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Botón modo */
+.modo_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  border-radius: 25%;
 }
 
 /* Selector idioma */
 .lenguaje {
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
-  border: 1px solid var(--color-neutro);
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: var(--color-claro);
-  color: var(--color-texto);
-  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 90px;
+  height: 30px;
+  background-color: #abe0e8;
+  border-radius: 15%;
 }
 
-body.modo-oscuro .lenguaje {
-  background-color: var(--color-neutro);
-  color: var(--color-claro);
-  border-color: var(--color-primario);
+/* Modo oscuro */
+.modo_oscuro {
+  background: url("../img/supermercado_dark.jpg") no-repeat center center/cover;
+  color: white;
 }
 
-/* Container lista de la compra */
-.container {
-  flex: 1 1 320px;
-  max-width: 500px;
-  background-color: var(--color-claro);
-  padding: 1.8rem 2rem;
-  box-shadow: var(--sombra-suave);
-  border-radius: 8px;
-  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+.modo_oscuro .modo_btn {
+  background-color: rgb(8, 172, 242);
 }
 
-body.modo-oscuro .container {
-  background-color: #2a2a2a;
+.modo_oscuro .container {
+  background: rgba(21, 2, 57, 0.9);
+  box-shadow: 0 4px 10px rgba(246, 237, 237, 0.8);
 }
 
-/* Títulos */
-h2#contenedor,
-h2#ticket {
-  font-family: 'Playfair Display', serif;
-  color: var(--color-primario);
-  margin-bottom: 1rem;
+.modo_oscuro h1 {
+  color: #cec6c6;
 }
 
-/* Formulario añadir productos */
-.añadir_producto {
-  display: flex;
-  gap: 0.7rem;
-  margin-bottom: 1rem;
+.modo_oscuro .añadir_producto button {
+  background: #28a745;
+  color: rgba(21, 2, 57);
+  border: rgba(229, 234, 239);
 }
 
-.añadir_producto input.prod,
-.añadir_producto input.numb {
-  flex: 1;
-  padding: 0.4rem 0.7rem;
-  font-size: 1rem;
-  border: 1px solid var(--color-neutro);
-  border-radius: 5px;
-  font-family: 'Quicksand', sans-serif;
-  transition: border-color 0.3s ease;
+.modo_oscuro .añadir_producto input {
+  background-color: #030a05;
+  color: rgb(255, 249, 250);
+  border: 1px solid rgba(229, 234, 239);
 }
 
-.añadir_producto input.prod:focus,
-.añadir_producto input.numb:focus {
-  border-color: var(--color-primario);
-  outline: none;
+.modo_oscuro #lista_productos li {
+  border: 1px solid #ddd;
+  background: #000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.añadir_producto button#agregar {
-  background-color: var(--color-primario);
-  color: var(--color-claro);
-  border: none;
-  padding: 0 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+.modo_oscuro #lista_productos li button {
+  color: black;
 }
 
-.añadir_producto button#agregar:hover {
-  background-color: var(--color-acento);
+.modo_oscuro #lista_productos li input {
+  border: 1px solid #ddd;
+  background: #000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: rgb(255, 249, 250);
 }
 
-/* Listas */
-#lista_productos,
-#lista_ticket {
-  list-style: none;
-  padding-left: 0;
-  max-height: 300px;
-  overflow-y: auto;
-  font-size: 1rem;
-  font-family: 'Quicksand', sans-serif;
-  color: var(--color-texto);
-  border: 1px solid var(--color-neutro);
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+.modo_oscuro .cinta {
+  color: black;
 }
 
-body.modo-oscuro #lista_productos,
-body.modo-oscuro #lista_ticket {
-  background-color: #222;
-  color: var(--color-claro);
-  border-color: var(--color-primario);
+.modo_oscuro .ticket {
+  background: rgb(30, 0, 0);
+  box-shadow: 0 4px 10px rgba(247, 245, 245, 0.2);
+  color: #d08f8f;
 }
 
-/* Ticket estilos */
-.ticket {
-  flex: 1 1 280px;
-  max-width: 400px;
-  background-color: var(--color-claro);
-  padding: 1.8rem 2rem;
-  box-shadow: var(--sombra-suave);
-  border-radius: 8px;
-  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+.modo_oscuro #lista_ticket li button {
+  color: black;
 }
 
-body.modo-oscuro .ticket {
-  background-color: #2a2a2a;
+.modo_oscuro #lista_ticket {
+  background-color: #333;
+  color: #ccc;
 }
 
-/* Total */
-#totalt {
-  font-family: 'Playfair Display', serif;
-  color: var(--color-primario);
-  text-align: right;
+.modo_oscuro #lista_ticket li {
+  background: #080808;
+  box-shadow: 2px 2px 5px rgba(250, 248, 248, 0.1);
 }
 
-/* Scrollbar estilizado para listas */
-#lista_productos::-webkit-scrollbar,
-#lista_ticket::-webkit-scrollbar {
-  width: 8px;
-}
-
-#lista_productos::-webkit-scrollbar-thumb,
-#lista_ticket::-webkit-scrollbar-thumb {
-  background-color: var(--color-primario);
-  border-radius: 4px;
+.modo_oscuro .ticket h2,
+.modo_oscuro .ticket h4 {
+  color: rgb(227, 198, 198);
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .main-wrapper {
-    margin-left: 20px;
     flex-direction: column;
-    padding: 1rem;
+    align-items: center;
+    padding: 10px;
   }
+
+  .carrito {
+    left: 10px;
+    top: 10px;
+    width: 40px;
+  }
+
+  .container,
+  .ticket {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .añadir_producto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prod,
+  .numb,
+  .añadir_producto button {
+    width: 100%;
+  }
+
+  #lista_productos li,
+  #lista_ticket li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .cinta {
-    top: 110px;
-    position: static;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    width: fit-content;
+    writing-mode: horizontal-tb;
+    height: auto;
+    width: 100%;
+    font-size: 20px;
+    margin: 20px 0;
   }
-  .carrito-seccion {
-    position: static;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-  .carrito svg {
-    width: 80px;
-    height: 80px;
+
+  .modo_btn,
+  .lenguaje {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
   }
 }
