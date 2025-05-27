@@ -26,4 +26,5 @@ class Comment(models.Model):
     created_at= models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comentario por {self.author.username} en {self.post.title}"
+        autor = self.author.username if self.author else "Anónimo"
+        return f"Comentario por {autor} en {self.post.title}"

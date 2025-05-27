@@ -19,6 +19,7 @@ from datetime import datetime
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import generics
 from .serializers import PostSerializer
+from django.contrib.auth.models import AnonymousUser
 
 
 # Create your views here.
@@ -99,6 +100,12 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comentarios'] = Comment.objects.filter(post=self.object).order_by('-created_at')
+        return context
+
 
 # class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
 #     model = Post
@@ -250,7 +257,9 @@ class CommentCreateView(CreateView):
         comentario = form.save(commit=False)
         post = Post.objects.get(pk=self.kwargs['pk'])
         comentario.post = post
-        if self.request.user.is_authenticated:
+        if isinstance(self.request.user, AnonymousUser):
+            comentario.author = None
+        else:
             comentario.author = self.request.user
         comentario.save()
         return super().form_valid(form)

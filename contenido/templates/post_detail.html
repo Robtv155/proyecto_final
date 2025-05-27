@@ -30,11 +30,19 @@
 
 <h2>Comentarios</h2>
 <a href="{% url 'comment_create' object.pk %}">Deja tu comentario</a>
+
 {% for comment in object.comment_set.all %}
 <hr>
-    <div>
-        <p>{{ comment.author.username }}:<br> {{comment.content }} </p>
-    </div>
+<div>
+  <p>
+    <strong>
+      {{ comment.author.username|default:"Anónimo" }}
+    </strong>:<br>
+    {{ comment.content }}
+  </p>
+</div>
+{% empty %}
+<p>Aún no hay comentarios.</p>
 {% endfor %}
 {% endblock %}
 
