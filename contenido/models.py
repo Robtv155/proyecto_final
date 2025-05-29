@@ -9,6 +9,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
+    imagen = models.ImageField(upload_to='imagenes_posts/', null=True, blank=True)
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)

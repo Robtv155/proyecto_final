@@ -2,11 +2,18 @@
 {% block title %} Confirmar Borrado {% endblock %}
 
 {% block content %}
-    <h4>¿Borrar el tag?</h4>
-    <p>{{ object.name }}</p>
-        <form method="POST">
-        {% csrf_token %} 
-        <button type="submit">Sí, eliminar tag</button>
-    </form>
-    <a href="{% url 'tag_list' %}">Cancelar</a>
+  <div class="confirmacion-wrapper">
+    <h1>¿Borrar el tag?</h1>
+    <span class="tag-inline">{{ object.name }}</span>
+
+    <div class="botones-confirmacion">
+      <a href="{% url 'tag_list' %}" class="btn-cancelar">Cancelar</a>
+
+      <form method="POST" style="margin: 0;">
+        {% csrf_token %}
+        <button type="submit" class="btn-eliminar">Sí, eliminar tag</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}
+

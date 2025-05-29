@@ -186,3 +186,6 @@ CACHES = {
 }
 
 CSRF_TRUSTED_ORIGINS = ["https://*.railway.app"]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

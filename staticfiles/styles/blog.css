@@ -1,4 +1,4 @@
-/* ==========================
+ /* ==========================
    1. ESTILOS BASE (MODO CLARO)
    ========================== */
 
@@ -187,19 +187,30 @@ a.button:hover {
 .tag {
   display: inline-block;
   background-color: var(--color-secundario);
-  color: var(--color-claro);
-  padding: 0.4rem 0.9rem;
-  margin: 3px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: transform 0.2s ease-in-out;
+  color: white !important;
+  border-radius: 8px;
+  padding: 2px 6px;
+  font-size: 0.80rem;
+  margin: 2px;
 }
 
-.tag:hover {
-  background-color: #336699;
-  transform: scale(1.05);
+.tag-link {
+  color: white !important;
+  text-decoration: none;
 }
+
+.tag-remove {
+  margin-left: 6px;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tag-remove:hover {
+  color: darkred;
+}
+
 
 /* Otros elementos */
 .usuario_registrado {
@@ -466,12 +477,13 @@ a.button:hover {
 }
 
 .tag-inline {
-  background-color: #ddd;
-  border-radius: 15px;
-  padding: 5px 10px;
+  display: inline-block;
+  background-color: var(--color-secundario);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
   font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .tag-remove {
@@ -486,12 +498,167 @@ a.button:hover {
   color: darkred;
 }
 
+.botones-confirmacion {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start; /* que estén al inicio */
+}
+
+.btn-eliminar,
+.btn-cancelar {
+  padding: 0.5rem 1.5rem; 
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  box-sizing: border-box;
+  border: none;
+  height: 38px;
+  line-height: normal;
+}
+
+/* Botón eliminar: verde / oliva */
+.btn-eliminar {
+  background-color: #6b8e23;
+  color: white;
+  border: none;
+}
+
+/* Botón cancelar: gris claro */
+.btn-cancelar {
+  background-color: #ddd;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+/* Hover states */
+.btn-eliminar:hover {
+  background-color: #556b2f;
+}
+
+.btn-cancelar:hover {
+  background-color: #bbb;
+}
+
+.confirmacion-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra horizontalmente */
+  justify-content: center; /* opcional: centra verticalmente si hay altura suficiente */
+  text-align: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.carrusel_container {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  aspect-ratio: 16 / 9;
+}
+
+.carrusel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px; /* o el tamaño que uses */
+  border-radius: 1rem;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+
+.carrusel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 2;
+}
+
+.carrusel .prev { left: 10px; }
+.carrusel .next { right: 10px; }
+
+/* Modo lectura */
+body.modo-lectura .navbar,
+body.modo-lectura .imagen_portada,
+body.modo-lectura .carrusel_container,
+body.modo-lectura .seccion_apis,
+body.modo-lectura footer,
+body.modo-lectura .boton_compra_flotante,
+body.modo-lectura #modo_btn {
+  display: none !important;
+}
+
+body.modo-lectura .container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background: var(--color-texto, #000);
+  color: var(--color-texto, #000);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.usuario_registrado {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+}
+
+#btn-lectura {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.3s;
+}
+
+#btn-lectura:hover {
+  background-color: #222;
+}
+
+
 :focus {
   outline: 3px solid #3b82f6;
   outline-offset: 2px;
 }
-
-
 
 /* Animaciones */
 @keyframes fadeSlideIn {
@@ -544,7 +711,6 @@ body.dark-mode .navbar_a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
-
 
 body.dark-mode .usuario_registrado {
   background-color: #222;
@@ -681,6 +847,11 @@ body.dark-mode .tag-remove:hover {
   color: #ff2222;
 }
 
+body.modo-oscuro #btn-lectura {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
 
 /* ===================
    3. RESPONSIVE
@@ -776,4 +947,5 @@ body.dark-mode .tag-remove:hover {
     padding: 0.5rem 1rem;
   }
 }
+
 

@@ -3,6 +3,9 @@
 
 {% block content %}
 <h1>{{ object.title }}</h1>
+{% if object.image %}
+  <img src="{{ object.image.url }}" alt="{{ object.title }}" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+{% endif %}
 <p>{{ object.content }}</p>
 <p>Creado por: {{ object.author }}</p>
 <p>Fecha: {{ object.created_at }}</p>

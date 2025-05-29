@@ -22,14 +22,17 @@
   </head>
   <body>
     <div class="usuario_registrado">
-      Bienvenido, {{ request.user.username }}
-    </div>
+  <button id="btn-lectura" title="Activar modo lectura">📖</button>
+  <span>Bienvenido, {{ request.user.username }}</span>
+</div>
+
+
 <nav class="navbar">
   <a href="{% url 'post_list' %}" class="navbar_a">
     <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo_navbar">
-    Bienvenido al blog
+    Sabores y Rutas
   </a>
-</nav>
+  </nav>
 
 <div class="imagen_portada">
   <img src="{% static 'img/monte_fuji.png' %}" alt="Monte Fuji" />
@@ -46,6 +49,22 @@
           <a href='{% url "post_list" %}' class="boton_acceso">Acceder al blog</a>
         </div>
       {% endblock %}
+{% if request.resolver_match.url_name == 'blog' %}
+  <div class="carrusel_container">
+    <div class="carrusel">
+      <img src="{% static 'img/carrusel1.jpg' %}" class="slide active" alt="Viaje 1">
+      <img src="{% static 'img/carrusel2.jpg' %}" class="slide" alt="Viaje 2">
+      <img src="{% static 'img/carrusel3.jpg' %}" class="slide" alt="Viaje 3">
+      <img src="{% static 'img/carrusel4.jpg' %}" class="slide" alt="Viaje 4">
+      <img src="{% static 'img/carrusel5.jpg' %}" class="slide" alt="Viaje 5">
+      <img src="{% static 'img/carrusel6.jpg' %}" class="slide" alt="Viaje 6">
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </div>
+{% endif %}
+
+
     </div>
 
     {% include "partials/cookie_banner.html" %}
@@ -71,71 +90,99 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Cargar clima por defecto
-        cargarClima('Santander');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Detectar ciudad automáticamente si no se ha buscado ninguna
+    if (!sessionStorage.getItem('ciudadDetectada')) {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
 
-        // Manejador del formulario
-        document.getElementById('form-ciudad').addEventListener('submit', function(e) {
-          e.preventDefault();
-          const ciudad = document.getElementById('ciudad').value.trim();
-          if (ciudad) {
-            cargarClima(ciudad);
-          }
-        });
-
-        function cargarClima(ciudad) {
-          const contenedor = document.getElementById('meteo-contenido');
-          contenedor.innerHTML = '<p>Cargando meteo...</p>';
-
-          fetch(`/weather/?city=${encodeURIComponent(ciudad)}`)
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
             .then(r => r.json())
-            .then(d => {
-              contenedor.innerHTML = `
-  <h4>${d.city}, ${d.country}</h4>
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <img src="https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title="${d.desc}">
-    <div>
-      <p><strong>${d.temp} ºC</strong> (${d.desc})</p>
-      <p>Sensación térmica: ${d.feels_like} ºC</p>
-    </div>
-  </div>
-  <ul style="list-style: none; padding: 0; margin-top: 1rem;">
-    <li><strong>Mínima:</strong> ${d.temp_min} ºC / <strong>Máxima:</strong> ${d.temp_max} ºC</li>
-    <li><strong>Humedad:</strong> ${d.humidity}%</li>
-    <li><strong>Viento:</strong> ${d.wind_speed} m/s (${d.wind_deg}°)</li>
-    <li><strong>Hora local:</strong> ${d.localtime}</li>
-  </ul>
-`;
-
+            .then(data => {
+              const ciudadDetectada = data.address.city || data.address.town || data.address.village || 'Santander';
+              document.getElementById('ciudad').value = ciudadDetectada;
+              cargarClima(ciudadDetectada);
+              sessionStorage.setItem('ciudadDetectada', ciudadDetectada);
             })
             .catch(() => {
-              contenedor.textContent = 'Sin Datos';
+              cargarClima('Santander');
             });
-        }
+        }, () => {
+          cargarClima('Santander');
+        });
+      } else {
+        cargarClima('Santander');
+      }
+    } else {
+      const ciudad = sessionStorage.getItem('ciudadDetectada');
+      document.getElementById('ciudad').value = ciudad;
+      cargarClima(ciudad);
+    }
 
-        // Cargar receta
-        fetch(`/recipe/?t=${Date.now()}`)
-          .then(r => r.json())
-          .then(d => {
-            const contenedor = document.getElementById('receta-contenido');
-            if (d.error) {
-              contenedor.textContent = 'Sin datos de receta';
-            } else {
-              contenedor.innerHTML = `
-                <strong>${d.name}</strong><br>
-                <em>${d.category} - ${d.area}</em><br><br>
-                <img src="${d.image}" alt="${d.name}" title="${d.name}" style="max-width: 100%; height: auto;"><br><br>
-                <p>${d.instructions}</p>
-                ${d.youtube ? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>` : ''}
-              `;
-            }
-          })
-          .catch(() => {
-            document.getElementById('receta-contenido').textContent = 'Error al cargar la receta';
-          });
+    // Manejador del formulario
+    document.getElementById('form-ciudad').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const ciudad = document.getElementById('ciudad').value.trim();
+      if (ciudad) {
+        cargarClima(ciudad);
+        sessionStorage.setItem('ciudadDetectada', ciudad);
+      }
+    });
+
+    function cargarClima(ciudad) {
+      const contenedor = document.getElementById('meteo-contenido');
+      contenedor.innerHTML = '<p>Cargando meteo...</p>';
+
+      fetch(`/weather/?city=${encodeURIComponent(ciudad)}`)
+        .then(r => r.json())
+        .then(d => {
+          contenedor.innerHTML = `
+<h4>${d.city}, ${d.country}</h4>
+<div style="display: flex; align-items: center; gap: 1rem;">
+  <img src="https://openweathermap.org/img/wn/${d.icon}@2x.png" alt="${d.desc}" title="${d.desc}">
+  <div>
+    <p><strong>${d.temp} ºC</strong> (${d.desc})</p>
+    <p>Sensación térmica: ${d.feels_like} ºC</p>
+  </div>
+</div>
+<ul style="list-style: none; padding: 0; margin-top: 1rem;">
+  <li><strong>Mínima:</strong> ${d.temp_min} ºC / <strong>Máxima:</strong> ${d.temp_max} ºC</li>
+  <li><strong>Humedad:</strong> ${d.humidity}%</li>
+  <li><strong>Viento:</strong> ${d.wind_speed} m/s (${d.wind_deg}°)</li>
+  <li><strong>Hora local:</strong> ${d.localtime}</li>
+</ul>
+`;
+        })
+        .catch(() => {
+          contenedor.textContent = 'Sin Datos';
+        });
+    }
+
+    // Cargar receta
+    fetch(`/recipe/?t=${Date.now()}`)
+      .then(r => r.json())
+      .then(d => {
+        const contenedor = document.getElementById('receta-contenido');
+        if (d.error) {
+          contenedor.textContent = 'Sin datos de receta';
+        } else {
+          contenedor.innerHTML = `
+            <strong>${d.name}</strong><br>
+            <em>${d.category} - ${d.area}</em><br><br>
+            <img src="${d.image}" alt="${d.name}" title="${d.name}" style="max-width: 100%; height: auto;"><br><br>
+            <p>${d.instructions}</p>
+            ${d.youtube ? `<a href="${d.youtube}" target="_blank">Ver vídeo</a>` : ''}
+          `;
+        }
+      })
+      .catch(() => {
+        document.getElementById('receta-contenido').textContent = 'Error al cargar la receta';
       });
-    </script>
+  });
+</script>
+
 
     <script src="{% static 'js/cookie-consent.js' %}" defer></script>
     <script src="{% static 'js/modo-oscuro.js' %}" defer></script>
@@ -172,6 +219,37 @@
       </div>
     </footer>
 
-    {% block extra_js %}{% endblock %}
-  </body>
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+
+    const showSlide = (index) => {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    };
+
+    document.querySelector('.prev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    });
+
+    document.querySelector('.next').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    });
+
+    // Cambio automático cada 5 segundos
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }, 5000);
+  });
+</script>
+<script src="{% static 'js/modo-lectura.js' %}" defer></script>
+{% endblock %}
+
+</body>
 </html>

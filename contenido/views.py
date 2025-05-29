@@ -95,8 +95,7 @@ class PostListView(ListView):
     model = Post
     template_name = "post_list.html"
     context_object_name = 'posts'
-    paginate_by = 3
-
+    
 class PostDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
@@ -163,7 +162,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
     form_class = PostForm
-    template_name = 'post_form.html'
+    template_name = 'post_update.html'
     success_url = reverse_lazy('post_list')
 
     def test_func(self):
@@ -353,3 +352,5 @@ class PostListAPIView(generics.ListAPIView):
     queryset = Post.objects.all().order_by('-created_at')  # o por id, como prefieras
     serializer_class = PostSerializer
     pagination_class = PostPagination
+
+

@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('contenido.urls')),
     path('api/', include('contenido.api_urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'contenido.views.custom_404'
 handler403 = 'contenido.views.custom_403'

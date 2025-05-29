@@ -23,13 +23,15 @@ class LoginForm(forms.Form):
 
 class PostForm(forms.ModelForm):
     tag_string = forms.CharField(required= False, label="Tags", help_text="Separar tags con comas")
+    imagen = forms.ImageField(required=False, label="Imagen del post") 
 
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'imagen']
         labels = {
             'title': 'Título',
             'content': 'Contenido',
+            'imagen': 'Imagen',
                     }
 
 
