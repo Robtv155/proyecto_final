@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import RegistroForm, LoginForm, PostForm, CommentForm
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from .models import Post, Tag, Comment
+from .models import Post, Tag, Comment, Valoracion
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.paginator import Paginator
+
 #imports para API de terceros y cache
 import requests
 from django.http import JsonResponse
@@ -20,6 +20,8 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework import generics
 from .serializers import PostSerializer
 from django.contrib.auth.models import AnonymousUser
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -352,5 +354,31 @@ class PostListAPIView(generics.ListAPIView):
     queryset = Post.objects.all().order_by('-created_at')  # o por id, como prefieras
     serializer_class = PostSerializer
     pagination_class = PostPagination
+
+import json
+
+@require_POST
+@login_required
+def valorar_post(request, post_id):
+    try:
+        data = json.loads(request.body)
+        puntuacion = int(data.get('puntuacion', 0))
+    except (ValueError, json.JSONDecodeError):
+        return JsonResponse({'error': 'Puntuación inválida'}, status=400)
+
+    if puntuacion not in range(1, 6):
+        return JsonResponse({'error': 'Puntuación inválida'}, status=400)
+
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return JsonResponse({'error': 'Post no encontrado'}, status=404)
+
+    valoracion, created = Valoracion.objects.update_or_create(
+        post=post, usuario=request.user,
+        defaults={'puntuacion': puntuacion}
+    )
+
+    return JsonResponse({'ok': True, 'puntuacion': puntuacion})
 
 

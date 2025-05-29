@@ -11,6 +11,14 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     imagen = models.ImageField(upload_to='imagenes_posts/', null=True, blank=True)
 
+class Valoracion(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='valoraciones')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    puntuacion = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+
+    class Meta:
+        unique_together = ('post', 'usuario')
+
 class Tag(models.Model):
     name = models.CharField(max_length=50)
     posts = models.ManyToManyField(Post, related_name='tags')

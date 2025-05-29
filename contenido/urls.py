@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/posts/', PostListAPIView.as_view(), name='api_post_list'),
     path('privacidad/', views.privacidad, name='privacidad'),
     path('aviso_legal/', views.aviso_legal, name='aviso_legal'),
+    path('guardar_valoracion/<int:post_id>/', views.valorar_post, name='guardar_valoracion'),
 ]
