@@ -64,7 +64,7 @@
 }
 
 body {
-  background: url('/static/img/manzanas_fondo.jpg') no-repeat center center/cover;
+  background: url('/static/img/manzanas_fondo.webp') no-repeat center center/cover;
   min-height: 100vh;
   margin: 0;
   position: relative;
@@ -95,8 +95,8 @@ body.modo_oscuro::before {
 
 .carrito {
   position: relative;
-  margin-top: 5px; /* separación del navbar */
-  margin-left: 90px; /* espacio para que quede a la derecha de la cinta (200px + margen) */
+  margin-top: 5px;
+  margin-left: 90px;
   width: 80px;
   height: auto;
   z-index: 5;
