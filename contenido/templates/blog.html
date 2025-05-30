@@ -21,29 +21,30 @@
     </style>
   </head>
   <body>
-    <div class="usuario_registrado">
-  <button id="btn-lectura" title="Activar modo lectura">📖</button>
-  <span>Bienvenido, {{ request.user.username }}</span>
-</div>
 
-
-<nav class="navbar">
+<nav class="navbar" aria-label="Navegación principal">
   <a href="{% url 'post_list' %}" class="navbar_a">
     <img src="{% static 'img/logo.webp' %}" alt="Logo" class="logo_navbar">
     Sabores y Rutas
   </a>
   </nav>
 
+<div class="usuario_registrado">
+  <button id="btn-lectura" title="Activar modo lectura" aria-pressed="false">📖</button>
+  <span>Bienvenido, {{ request.user.username }}</span>
+</div>
+
 <div class="imagen_portada">
   <img src="{% static 'img/monte_fuji.webp' %}" alt="Monte Fuji" />
   <h1 class="banner_titulo">Sabores y rutas</h1>
-  <button id="modo_btn">🌙</button>
+  <button id="modo_btn" aria-label="Activar modo oscuro" aria-pressed="false">🌙</button>
   <a href="{% url 'compra' %}" class="boton_compra_flotante" title="Ir a la lista de la compra">🛒</a>
 
 </div>
 
 
-    <div class="container">
+    <div class="carrusel_container" role="region" aria-label="Carrusel de imágenes de viajes">
+  <div class="carrusel" role="list">
       {% block content %}
         <div class="acceder_container">
           <a href='{% url "post_list" %}' class="boton_acceso">Acceder al blog</a>
@@ -52,14 +53,14 @@
 {% if request.resolver_match.url_name == 'blog' %}
   <div class="carrusel_container">
     <div class="carrusel">
-      <img src="{% static 'img/carrusel1.webp' %}" class="slide active" alt="Viaje 1">
-      <img src="{% static 'img/carrusel2.webp' %}" class="slide" alt="Viaje 2">
-      <img src="{% static 'img/carrusel3.webp' %}" class="slide" alt="Viaje 3">
-      <img src="{% static 'img/carrusel4.webp' %}" class="slide" alt="Viaje 4">
-      <img src="{% static 'img/carrusel5.webp' %}" class="slide" alt="Viaje 5">
-      <img src="{% static 'img/carrusel6.webp' %}" class="slide" alt="Viaje 6">
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
+      <img src="{% static 'img/carrusel1.webp' %}" class="slide active" alt="Viaje 1" role="listitem">
+      <img src="{% static 'img/carrusel2.webp' %}" class="slide" alt="Viaje 2" role="listitem">
+      <img src="{% static 'img/carrusel3.webp' %}" class="slide" alt="Viaje 3" role="listitem">
+      <img src="{% static 'img/carrusel4.webp' %}" class="slide" alt="Viaje 4" role="listitem">
+      <img src="{% static 'img/carrusel5.webp' %}" class="slide" alt="Viaje 5" role="listitem">
+      <img src="{% static 'img/carrusel6.webp' %}" class="slide" alt="Viaje 6" role="listitem">
+      <button class="prev" aria-label="Imagen anterior">&#10094;</button>
+      <button class="next" aria-label="Imagen siguiente">&#10095;</button>
     </div>
   </div>
 {% endif %}
@@ -190,7 +191,7 @@
     <footer class="footer">
       <div class="footer_contenedor">
         <div class="footer_seccion logo_footer">
-          <img src="{% static 'img/logo.webp' %}" alt="Logo Sabores y Rutas">
+          <img src="{% static 'img/logo.webp' %}" alt="Logo Sabores y Rutas" class="logo_navbar">
         </div>
         <div class="footer_seccion">
           <h4>Sabores y rutas</h4>

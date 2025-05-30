@@ -15,6 +15,10 @@
   --color-claro: #ffffff;
   --color-neutro: #e0e0e0;
   --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --color-formulario: #D8EAE6;
+  --color-input-bg: #eef4ea;
+  --color-hover-primario: #556b2f;
+  --sombra-profunda: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Reset */
@@ -107,7 +111,7 @@ body {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #D8EAE6;
+  background-color: var(--color-formulario);
   border: 1px solid var(--color-borde, #ccc);
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -131,7 +135,7 @@ select {
   margin-bottom: 1rem;
   border: 1px solid var(--color-neutro);
   border-radius: 8px;
-  background-color: #eef4ea;
+  background-color: var(--color-input-bg);
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -154,7 +158,7 @@ a.button {
 button:hover,
 input[type="submit"]:hover,
 a.button:hover {
-  background-color: #556b2f;
+  background-color: var(--color-hover-primario);
   transform: translateY(-2px);
 }
 
@@ -172,7 +176,7 @@ a.button:hover {
 
 .tarjeta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--sombra-profunda);
 }
 
 .tarjeta h2,
@@ -210,7 +214,6 @@ a.button:hover {
 .tag-remove:hover {
   color: darkred;
 }
-
 
 /* Otros elementos */
 .usuario_registrado {
@@ -269,7 +272,8 @@ a.button:hover {
   text-decoration: none;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -317,13 +321,15 @@ a.button:hover {
 
 .footer_seccion a {
   color: var(--color-claro);
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .footer_seccion a:hover {
   color: var(--color-acento);
-  text-decoration: underline;
+  text-decoration: none;
+  outline: 2px solid var(--color-acento);
 }
 
 .footer_social {
@@ -372,7 +378,7 @@ a.button:hover {
 
 
 #modo_btn:hover {
-  background-color: #556b2f;
+  background-color: var(--color-hover-primario);
   transform: translateY(-2px);
 }
 
@@ -387,7 +393,6 @@ a.button:hover {
 
 .seccion_apis .tarjeta {
   flex: 1 1 300px;
-  padding: 1.5rem;
 }
 
 #meteo-contenido h4 {
@@ -464,7 +469,7 @@ a.button:hover {
 }
 
 .boton_compra_flotante:hover {
-  background-color: #556b2f;
+  background-color: var(--color-hover-primario);
   transform: translateY(-2px);
 }
 
@@ -486,23 +491,13 @@ a.button:hover {
   margin-bottom: 1rem;
 }
 
-.tag-remove {
-  margin-left: 6px;
-  color: red;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-}
 
-.tag-remove:hover {
-  color: darkred;
-}
 
 .botones-confirmacion {
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: flex-start; /* que estén al inicio */
+  justify-content: flex-start;
 }
 
 .btn-eliminar,
@@ -540,7 +535,7 @@ a.button:hover {
 
 /* Hover states */
 .btn-eliminar:hover {
-  background-color: #556b2f;
+  background-color: var(--color-hover-primario);
 }
 
 .btn-cancelar:hover {
@@ -797,7 +792,7 @@ body.dark-mode a.button {
 body.dark-mode button:hover,
 body.dark-mode input[type="submit"]:hover,
 body.dark-mode a.button:hover {
-  background-color: #556b2f;
+  background-color: var(--color-hover-primario);
 }
 
 body.dark-mode .boton_acceso {

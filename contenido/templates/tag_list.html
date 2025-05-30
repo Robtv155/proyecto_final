@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1 class="titulo">Lista de Tags</h1>
-<a href="{% url 'post_list' %}">← Volver a la lista de posts</a>
+<a href="{% url 'post_list' %}" aria-label="Volver a la lista de posts">← Volver a la lista de posts</a>
 <br><br>
 
 <div class="tag-container">
@@ -12,7 +12,7 @@
       <a href="{% url 'post_list_by_tag' tag.pk %}" class="tag-link">
         {{ tag.name }}
       </a>
-      <a href="{% url 'tag_delete' tag.pk %}" class="tag-remove" title="Eliminar tag">×</a>
+      <a href="{% url 'tag_delete' tag.pk %}" class="tag-remove" aria-label="Eliminar tag {{ tag.name }}" title="Eliminar tag">×</a>
     </span>
   {% empty %}
     <p>No hay tags disponibles.</p>
@@ -20,5 +20,5 @@
 </div>
 
 <br>
-<a href="{% url 'tag_create' %}" class="boton">Crea un nuevo tag</a>
+<a href="{% url 'tag_create' %}" class="boton" aria-label="Crear un nuevo tag">Crea un nuevo tag</a>
 {% endblock %}

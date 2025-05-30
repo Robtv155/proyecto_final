@@ -6,11 +6,11 @@
 <h1 class="titulo">Lista de posts</h1>
 
 {% if user.is_authenticated %}
-  <a href="{% url 'post_create' %}">Crea un nuevo post</a>
+  <a href="{% url 'post_create' %}" aria-label="Crear un nuevo post">Crea un nuevo post</a>
 {% endif %}
 <br><br>
 
-<a href="{% url 'tag_list' %}">Lista de tags</a>
+<a href="{% url 'tag_list' %}" aria-label="Ir a la lista de tags">Lista de tags</a>
 
 <br>
 
