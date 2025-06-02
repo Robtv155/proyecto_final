@@ -434,16 +434,171 @@ body.modo_oscuro #lista_ticket li button:hover {
 }
 
 
-/* Responsive */
-@media screen and (max-width: 700px) {
+/* ============================= */
+/* ===== SECCIÓN RESPONSIVE ==== */
+/* ============================= */
+
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
+/*    < 400px → móviles muy pequeños     */
+/* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+@media (max-width: 399px) {
   .main-wrapper {
     flex-direction: column;
-    padding: 20px 5px;
+    align-items: center;
   }
+
+  .container,
+  .ticket {
+    width: 95%;
+  }
+
   .carrito {
-    margin-left: 0;
+    margin: 1rem auto;
+    text-align: center;
   }
+
+  .añadir_producto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prod,
+  .numb,
+  .añadir_producto button {
+    width: 100%;
+  }
+
+  #lista_productos li,
+  #lista_ticket li,
+  #lista_ticket li .ticket_info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1,
+  h2,
+  .navbar .navbar-title {
+    font-size: 1.2rem;
+  }
+
+  .navbar_a {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .modo_btn,
+  .lenguaje {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    z-index: 15;
+  }
+
+  .lenguaje {
+    right: 50px;
+  }
+
   .cinta {
     display: none;
+  }
+}
+
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
+/*    ≤ 600px → móviles normales    */
+/* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+@media (min-width: 400px) and (max-width: 600px) {
+  .main-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container,
+  .ticket {
+    width: 90%;
+  }
+
+  .añadir_producto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prod,
+  .numb,
+  .añadir_producto button {
+    width: 100%;
+  }
+
+  #lista_productos li,
+  #lista_ticket li,
+  #lista_ticket li .ticket_info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1,
+  h2,
+  .navbar .navbar-title {
+    font-size: 1.3rem;
+  }
+
+  .navbar_a {
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .cinta {
+    display: none;
+  }
+}
+
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
+/*   601–900px → tablets pequeñas   */
+/* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+@media (min-width: 601px) and (max-width: 900px) {
+  .main-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container,
+  .ticket {
+    width: 85%;
+    max-width: 700px;
+  }
+
+  .añadir_producto {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .prod,
+  .numb,
+  .añadir_producto button {
+    flex: 1 1 30%;
+    min-width: 140px;
+  }
+
+  #lista_productos li,
+  #lista_ticket li,
+  #lista_ticket li .ticket_info {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  h1,
+  h2,
+  .navbar .navbar-title {
+    font-size: 1.5rem;
+  }
+
+  .navbar_a {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .cinta {
+    display: none; /* opcional si ocupa demasiado */
   }
 }
